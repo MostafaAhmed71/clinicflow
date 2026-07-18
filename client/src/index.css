@@ -1996,22 +1996,29 @@ body {
 }
 
 .cf-mobile-bottom-nav {
-  position: fixed;
-  inset-inline: 0;
-  bottom: 0;
-  z-index: 60;
-  display: flex;
-  align-items: stretch;
-  justify-content: space-around;
-  gap: 2px;
-  min-height: 3.75rem;
-  padding: 0.35rem 0.25rem calc(0.35rem + env(safe-area-inset-bottom));
-  border-top: 1px solid var(--color-outline-variant);
-  background: color-mix(in srgb, var(--color-surface-container-lowest) 92%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 -6px 24px rgb(11 28 48 / 0.08);
+  display: none;
 }
+
+@media (max-width: 1023px) {
+  .cf-mobile-bottom-nav {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 60;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-around;
+    gap: 2px;
+    min-height: 3.75rem;
+    padding: 0.35rem 0.25rem calc(0.35rem + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--color-outline-variant);
+    background: color-mix(in srgb, var(--color-surface-container-lowest) 92%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 -6px 24px rgb(11 28 48 / 0.08);
+  }
+}
+
 .cf-mobile-tab {
   flex: 1;
   display: flex;
@@ -2046,13 +2053,20 @@ body {
 }
 
 .cf-mobile-sheet-root {
-  position: fixed;
-  inset: 0;
-  z-index: 70;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  display: none;
 }
+
+@media (max-width: 1023px) {
+  .cf-mobile-sheet-root {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+}
+
 .cf-mobile-sheet-backdrop {
   position: absolute;
   inset: 0;
@@ -2133,6 +2147,76 @@ body {
   padding-top: calc(0.65rem + env(safe-area-inset-top));
   border-bottom: 1px solid var(--color-outline-variant);
   background: color-mix(in srgb, var(--color-primary-fixed) 40%, white);
+}
+
+/* —— Super Admin console —— */
+.cf-admin-shell {
+  background:
+    radial-gradient(900px 420px at 100% -10%, color-mix(in srgb, var(--color-primary-fixed) 55%, transparent), transparent 55%),
+    var(--color-background);
+}
+.cf-admin-kpi {
+  border-radius: 1rem;
+  border: 1px solid var(--color-outline-variant);
+  background: var(--color-surface-container-lowest);
+  padding: 0.9rem 1rem;
+  box-shadow: 0 1px 2px rgb(11 28 48 / 0.04);
+}
+.cf-admin-kpi--trial {
+  border-color: color-mix(in srgb, var(--color-secondary) 35%, var(--color-outline-variant));
+  background: color-mix(in srgb, var(--color-secondary-container) 28%, white);
+}
+.cf-admin-kpi--warn {
+  border-color: color-mix(in srgb, #b45309 30%, var(--color-outline-variant));
+  background: #fff8eb;
+}
+.cf-admin-kpi-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-on-surface-variant);
+  margin-bottom: 0.2rem;
+}
+.cf-admin-kpi-value {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1.1;
+}
+.cf-admin-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+  font-size: 0.65rem;
+  font-weight: 800;
+}
+.cf-admin-badge--trial {
+  background: color-mix(in srgb, var(--color-secondary-container) 55%, white);
+  color: #006a61;
+}
+.cf-admin-badge--expired {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.cf-admin-badge--none {
+  background: var(--color-surface-container);
+  color: var(--color-on-surface-variant);
+}
+
+.cf-impersonate-banner {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  padding: 0.55rem 0.85rem;
+  padding-top: calc(0.55rem + env(safe-area-inset-top));
+  background: linear-gradient(90deg, #0f766e, #006194);
+  color: #fff;
+  box-shadow: 0 4px 16px rgb(0 97 148 / 0.25);
 }
 
 @media (max-width: 639px) {

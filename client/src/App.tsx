@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { AppLayout } from './components/AppLayout'
 import { RequirePermission } from './components/RequirePermission'
 import { SecretaryLayout } from './components/SecretaryLayout'
+import { SuspendedScreen } from './components/SuspendedScreen'
 import { useAuth } from './hooks/useAuth'
 import { AdminPage } from './pages/AdminPage'
 import { AppointmentsPage } from './pages/AppointmentsPage'
@@ -58,23 +59,24 @@ function AuthBootScreen() {
 }
 
 function ProtectedClinic() {
-  const { session, user, loading } = useAuth()
+  const { session, user, tenant, loading, impersonating } = useAuth()
 
-  // Only block the first boot — never blank the app on later navigations/token refresh
   if (loading && !user) return <AuthBootScreen />
-
   if (!session) return <Navigate to="/login" replace />
 
   if (user?.role === 'super_admin') {
+    if (impersonating && tenant) {
+      return (
+        <RequirePermission>
+          <Outlet />
+        </RequirePermission>
+      )
+    }
     return <Navigate to="/admin" replace />
   }
 
   if (!user?.tenant_id) return <Navigate to="/onboarding" replace />
-
-  // Secretaries use the dedicated desk UI
-  if (user.role === 'secretary') {
-    return <Navigate to="/desk" replace />
-  }
+  if (user.role === 'secretary') return <Navigate to="/desk" replace />
 
   return (
     <RequirePermission>
@@ -84,15 +86,17 @@ function ProtectedClinic() {
 }
 
 function ProtectedSecretary() {
-  const { session, user, loading } = useAuth()
+  const { session, user, tenant, loading, impersonating } = useAuth()
 
   if (loading && !user) return <AuthBootScreen />
-
   if (!session) return <Navigate to="/login" replace />
-  if (user?.role === 'super_admin') return <Navigate to="/admin" replace />
-  if (!user?.tenant_id) return <Navigate to="/onboarding" replace />
 
-  // Desk is for secretary; doctors may also open it
+  if (user?.role === 'super_admin') {
+    if (impersonating && tenant) return <Outlet />
+    return <Navigate to="/admin" replace />
+  }
+
+  if (!user?.tenant_id) return <Navigate to="/onboarding" replace />
   if (!['secretary', 'doctor', 'clinic_manager'].includes(user.role)) {
     return <Navigate to="/" replace />
   }
@@ -101,17 +105,23 @@ function ProtectedSecretary() {
 }
 
 function ProtectedAdmin() {
-  const { session, user, loading } = useAuth()
+  const { session, user, loading, impersonating } = useAuth()
 
   if (loading && !user) return <AuthBootScreen />
-
   if (!session) return <Navigate to="/login" replace />
   if (user?.role !== 'super_admin') return <Navigate to="/" replace />
+  if (impersonating) return <Navigate to="/" replace />
 
   return <Outlet />
 }
 
 export default function App() {
+  const { session, loading, suspended } = useAuth()
+
+  if (!loading && session && suspended) {
+    return <SuspendedScreen />
+  }
+
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />

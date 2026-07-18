@@ -88,7 +88,7 @@ export function SecretaryLayout() {
         </div>
       </header>
 
-      <main className="cf-desk-main mx-auto max-w-5xl space-y-md px-md py-md pb-[calc(5rem+env(safe-area-inset-bottom))] sm:space-y-lg sm:px-lg sm:py-lg sm:pb-lg">
+      <main className="cf-desk-main mx-auto max-w-5xl space-y-md px-md py-md pb-[calc(5rem+env(safe-area-inset-bottom))] sm:space-y-lg sm:px-lg sm:py-lg lg:pb-lg">
         <Outlet />
       </main>
 

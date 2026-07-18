@@ -6,6 +6,7 @@ import { usePermissions, type AppModule } from '../hooks/usePermissions'
 import { Icon } from './Icon'
 import { MobileBottomNav } from './MobileBottomNav'
 import { PwaInstallBanner } from './PwaInstallBanner'
+import { ImpersonationBanner } from './ImpersonationBanner'
 
 const links: {
   to: string
@@ -83,6 +84,7 @@ export function AppLayout() {
 
   return (
     <div className="cf-app-shell min-h-screen bg-background text-on-surface">
+      <ImpersonationBanner />
       <PwaInstallBanner />
 
       {/* SideNavBar — desktop only */}

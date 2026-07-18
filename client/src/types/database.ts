@@ -26,6 +26,26 @@ export type Tenant = {
   specialty?: string | null
   stamp_url?: string | null
   doctor_signature_url?: string | null
+  is_suspended?: boolean | null
+  suspend_message?: string | null
+  subscription_status?: 'trial' | 'active' | 'past_due' | 'cancelled' | null
+  trial_alert_sent_at?: string | null
+}
+
+export type PlatformSubscriptionInvoice = {
+  id: string
+  tenant_id: string
+  plan: 'starter' | 'professional' | 'enterprise'
+  amount_egp: number
+  period_start: string
+  period_end: string
+  status: 'draft' | 'pending' | 'paid' | 'failed' | 'cancelled'
+  payment_provider: 'manual' | 'paymob' | 'fawry'
+  provider_reference: string | null
+  paid_at: string | null
+  notes: string | null
+  created_by: string | null
+  created_at: string
 }
 
 export type Patient = {

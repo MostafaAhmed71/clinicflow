@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>ClinicFlow — الدليل الشامل للطبيب</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #006194;
+      --primary-dark: #004b73;
+      --teal: #006a61;
+      --ink: #0b1c30;
+      --muted: #3f4850;
+      --line: #bfc7d2;
+      --soft: #eff4ff;
+      --paper: #ffffff;
+      --accent: #007bb9;
+    }
+    * { box-sizing: border-box; }
+    @page { size: A4; margin: 12mm 11mm 14mm; }
+    html, body {
+      margin: 0; padding: 0;
+      font-family: "Cairo", Tahoma, sans-serif;
+      color: var(--ink);
+      background: #e8eef5;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 14px;
+      background: var(--paper);
+      padding: 14mm 13mm 12mm;
+      box-shadow: 0 8px 28px rgb(11 28 48 / 0.1);
+      page-break-after: always;
+      position: relative;
+    }
+    .page:last-child { page-break-after: auto; }
+    @media print {
+      body { background: #fff; }
+      .page { width: auto; min-height: auto; margin: 0; padding: 0; box-shadow: none; }
+      .no-print { display: none !important; }
+    }
+    .toolbar {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; gap: 8px; justify-content: center; padding: 12px; background: #0b1c30;
+    }
+    .toolbar button {
+      font-family: inherit; font-weight: 700; border: none; border-radius: 10px;
+      padding: 10px 18px; cursor: pointer; background: #86f2e4; color: #00201d;
+    }
+    .page-num {
+      position: absolute; bottom: 8mm; left: 13mm; right: 13mm;
+      display: flex; justify-content: space-between;
+      font-size: 9.5px; color: var(--muted); font-weight: 600;
+      border-top: 1px solid var(--line); padding-top: 6px;
+    }
+    h2.section {
+      margin: 0 0 8px; font-size: 18px; font-weight: 800; color: var(--primary);
+      display: flex; align-items: center; gap: 8px;
+    }
+    h2.section::before {
+      content: ""; width: 7px; height: 1em; border-radius: 4px; background: var(--primary);
+    }
+    h3 { margin: 12px 0 6px; font-size: 13.5px; font-weight: 800; color: var(--primary-dark); }
+    p, li { font-size: 11.5px; line-height: 1.7; font-weight: 500; }
+    .lead { font-size: 12.5px; line-height: 1.8; color: var(--muted); font-weight: 600; margin: 0 0 10px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
+    .card {
+      border: 1px solid var(--line); border-radius: 11px; padding: 10px 11px; background: var(--soft);
+    }
+    .card.white { background: #fff; }
+    .card h4 { margin: 0 0 5px; font-size: 12.5px; font-weight: 800; color: var(--primary); }
+    .card p, .card li { font-size: 10.8px; margin: 0; }
+    .card ul { margin: 0; padding-inline-start: 16px; }
+    .card li { margin-bottom: 3px; }
+    .toc ol { margin: 6px 0 0; padding-inline-start: 22px; }
+    .toc li { margin-bottom: 5px; font-size: 12px; font-weight: 600; }
+    .toc li span { color: var(--muted); font-weight: 500; }
+
+    .cover {
+      display: flex; flex-direction: column; min-height: 265mm; justify-content: space-between;
+      background:
+        radial-gradient(800px 420px at 100% 0%, #cce5ff 0%, transparent 55%),
+        radial-gradient(600px 360px at 0% 100%, #89f5e7 0%, transparent 50%),
+        linear-gradient(165deg, #f8fbff 0%, #fff 45%, #f3faf8 100%);
+      border-radius: 4px; padding: 6mm;
+    }
+    .brand-mark { display: flex; align-items: center; gap: 12px; }
+    .logo {
+      width: 58px; height: 58px; border-radius: 14px;
+      background: linear-gradient(145deg, var(--accent), var(--primary-dark));
+      color: #fff; display: grid; place-items: center; font-size: 30px; font-weight: 800;
+      box-shadow: 0 10px 24px rgb(0 97 148 / 0.28);
+    }
+    .brand-name { font-size: 30px; font-weight: 800; color: var(--primary); line-height: 1.1; }
+    .brand-tag { font-size: 13px; color: var(--muted); font-weight: 600; }
+    .cover h1 { margin: 22px 0 10px; font-size: 28px; line-height: 1.4; font-weight: 800; max-width: 96%; }
+    .cover-lead { font-size: 14px; line-height: 1.85; color: var(--muted); font-weight: 600; max-width: 95%; }
+    .cover-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 20px 0; }
+    .pillar {
+      background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px 10px; text-align: center;
+    }
+    .pillar strong { display: block; color: var(--primary); font-size: 13px; margin-bottom: 3px; }
+    .pillar span { font-size: 10.5px; color: var(--muted); font-weight: 600; line-height: 1.45; }
+    .cover-footer {
+      display: flex; justify-content: space-between; align-items: flex-end; gap: 12px;
+      border-top: 2px solid var(--primary); padding-top: 12px;
+    }
+    .cover-footer .pos { font-size: 13px; font-weight: 800; color: var(--teal); }
+    .cover-footer .meta { font-size: 11px; color: var(--muted); font-weight: 600; text-align: left; }
+
+    .flow {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin: 8px 0 12px;
+    }
+    .flow-step {
+      text-align: center; border: 1px solid var(--line); border-radius: 10px; padding: 8px 6px; background: #fff;
+    }
+    .flow-step .n {
+      width: 22px; height: 22px; margin: 0 auto 4px; border-radius: 999px; background: var(--primary);
+      color: #fff; font-size: 11px; font-weight: 800; display: grid; place-items: center;
+    }
+    .flow-step strong { display: block; font-size: 11px; color: var(--primary-dark); }
+    .flow-step span { font-size: 9.5px; color: var(--muted); font-weight: 600; }
+
+    .roles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+    .role { border-radius: 12px; padding: 12px; color: #fff; }
+    .role.doctor { background: linear-gradient(145deg, #007bb9, #004b73); }
+    .role.desk { background: linear-gradient(145deg, #0a9a8c, #006a61); }
+    .role h4 { margin: 0 0 6px; font-size: 13px; color: #fff; }
+    .role ul { margin: 0; padding-inline-start: 16px; }
+    .role li { color: #fff; font-size: 10.5px; font-weight: 600; margin-bottom: 3px; }
+
+    .feature-list {
+      columns: 2; column-gap: 12px; margin: 6px 0 0; padding: 0; list-style: none;
+    }
+    .feature-list li {
+      break-inside: avoid; margin-bottom: 5px; padding: 6px 8px 6px 26px;
+      border-radius: 8px; border: 1px solid var(--line); background: #fff;
+      font-size: 10.5px; font-weight: 600; position: relative;
+    }
+    .feature-list li::before {
+      content: "✓"; position: absolute; inset-inline-start: 8px; color: var(--teal); font-weight: 800;
+    }
+
+    table.compare, table.specs {
+      width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 10.5px;
+    }
+    table.compare th, table.compare td,
+    table.specs th, table.specs td {
+      border: 1px solid var(--line); padding: 6px 7px; text-align: center;
+    }
+    table.compare th, table.specs th {
+      background: var(--primary); color: #fff; font-weight: 800;
+    }
+    table.compare td:first-child, table.specs td:first-child,
+    table.compare th:first-child, table.specs th:first-child {
+      text-align: right; font-weight: 700;
+    }
+    table.compare tr:nth-child(even) td, table.specs tr:nth-child(even) td { background: var(--soft); }
+    .yes { color: var(--teal); font-weight: 800; }
+    .no { color: #94a3b8; }
+
+    .pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+    .plan {
+      border: 1.5px solid var(--line); border-radius: 14px; padding: 12px 10px 14px;
+      background: #fff; display: flex; flex-direction: column; position: relative;
+    }
+    .plan.featured {
+      border-color: var(--primary);
+      background: linear-gradient(180deg, #e8f4fc 0%, #fff 42%);
+      box-shadow: 0 8px 22px rgb(0 97 148 / 0.14);
+    }
+    .plan .badge {
+      position: absolute; top: -9px; left: 50%; transform: translateX(-50%);
+      background: var(--primary); color: #fff; font-size: 9px; font-weight: 800;
+      padding: 2px 9px; border-radius: 999px; white-space: nowrap;
+    }
+    .plan .name { font-size: 14px; font-weight: 800; color: var(--primary-dark); text-align: center; }
+    .plan .price { text-align: center; margin: 6px 0 2px; }
+    .plan .price .num { font-size: 24px; font-weight: 800; color: var(--primary); }
+    .plan .price .cur { font-size: 11px; font-weight: 700; color: var(--muted); }
+    .plan .period { text-align: center; font-size: 10px; color: var(--muted); font-weight: 600; margin-bottom: 8px; }
+    .plan ul { margin: 0; padding: 0; list-style: none; flex: 1; }
+    .plan li {
+      font-size: 10px; font-weight: 600; padding: 4px 0;
+      border-bottom: 1px dashed #e2e8f0; color: var(--ink);
+    }
+    .plan li:last-child { border-bottom: none; }
+    .plan .fit {
+      margin-top: 8px; font-size: 9.5px; font-weight: 700; text-align: center;
+      color: var(--teal); background: #ecfdf8; border-radius: 7px; padding: 5px;
+    }
+    .note {
+      margin-top: 10px; padding: 8px 10px; border-radius: 9px;
+      background: #fff8eb; border: 1px solid #f5d78e;
+      font-size: 10px; font-weight: 600; color: #7a4e00; line-height: 1.65;
+    }
+    .cta-box {
+      margin-top: 12px; padding: 14px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff; text-align: center;
+    }
+    .cta-box h3 { color: #fff; margin: 0 0 5px; font-size: 14px; }
+    .cta-box p { color: rgb(255 255 255 / 0.92); margin: 0; font-size: 11px; font-weight: 600; }
+    .faq dt { font-weight: 800; font-size: 11.5px; color: var(--primary-dark); margin-top: 8px; }
+    .faq dd { margin: 2px 0 0; font-size: 11px; color: var(--muted); font-weight: 600; line-height: 1.65; }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 5px; margin: 6px 0 8px; }
+    .chip {
+      font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 999px;
+      background: var(--soft); border: 1px solid var(--line); color: var(--primary-dark);
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar no-print">
+    <button type="button" onclick="window.print()">حفظ / طباعة PDF</button>
+  </div>
+
+  <!-- 1 Cover -->
+  <section class="page">
+    <div class="cover">
+      <div>
+        <div class="brand-mark">
+          <div class="logo">+</div>
+          <div>
+            <div class="brand-name">ClinicFlow</div>
+            <div class="brand-tag">الدليل الشامل — منصة إدارة العيادات الخاصة في مصر</div>
+          </div>
+        </div>
+        <h1>كل يوم العيادة في نظام واحد:<br/>حجز → انتظار → كشف → طباعة → تحصيل → تقارير</h1>
+        <p class="cover-lead">
+          ClinicFlow منصة سحابية عربية بالكامل (RTL) مصمَّمة لعيادة مصر اليومية.
+          تدير ملفات المرضى، مكتب السكرتارية، غرفة الانتظار الحية، شاشة الكشف والروشتة،
+          طلبات التحاليل والأشعة، تعليمات المريض، الفواتير والخزنة، والتقارير —
+          مع فصل واضح بين دور الطبيب والسكرتارية، ودعم الكمبيوتر والموبايل (PWA).
+        </p>
+        <div class="cover-pillars">
+          <div class="pillar"><strong>لعيادة مصر</strong><span>عربي · كاش · حراري/A4 · واتساب · أدوية مصرية</span></div>
+          <div class="pillar"><strong>يوم الدكتور</strong><span>تركيز على الكشف بدون تشتيت إداري</span></div>
+          <div class="pillar"><strong>فريق العيادة</strong><span>طبيب يكشف · سكرتارية تدير المكتب</span></div>
+        </div>
+        <div class="chip-row">
+          <span class="chip">Multi-tenant آمن</span>
+          <span class="chip">تخصصات طبية</span>
+          <span class="chip">طباعة احترافية</span>
+          <span class="chip">تقارير وإقفال يوم</span>
+          <span class="chip">تجربة ١٤ يوم</span>
+        </div>
+      </div>
+      <div class="cover-footer">
+        <div class="pos">«الكشف أسرع، الانتظار أوضح، والتحصيل ما بيتنسيش.»</div>
+        <div class="meta">دليل تعريفي للأطباء · يوليو 2026<br/>نسخة شاملة · ١٠ صفحات</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 TOC + Who -->
+  <section class="page">
+    <h2 class="section">محتويات الدليل</h2>
+    <div class="toc grid-2">
+      <ol>
+        <li>من أجل مين؟ وما المشكلة التي يحلّها <span>ص ٣</span></li>
+        <li>مسار يوم العيادة الكامل <span>ص ٣</span></li>
+        <li>دور الطبيب ودور السكرتارية <span>ص ٤</span></li>
+        <li>ملفات المرضى والكارت الطبي <span>ص ٤</span></li>
+        <li>الحجوزات وغرفة الانتظار <span>ص ٥</span></li>
+        <li>شاشة الكشف والروشتة <span>ص ٥–٦</span></li>
+      </ol>
+      <ol start="7">
+        <li>التحاليل والأشعة والتعليمات <span>ص ٦</span></li>
+        <li>التخصصات والطباعة والهوية <span>ص ٧</span></li>
+        <li>المالية والتقارير والموبايل <span>ص ٨</span></li>
+        <li>الأمان والتقنية وبدء التشغيل <span>ص ٩</span></li>
+        <li>خطط الاشتراك والأسعار <span>ص ١٠</span></li>
+        <li>أسئلة شائعة ودعوة للتجربة <span>ص ١٠</span></li>
+      </ol>
+    </div>
+
+    <h2 class="section" style="margin-top:16px">لمن صُمم ClinicFlow؟</h2>
+    <div class="grid-3">
+      <div class="card"><h4>طبيب عيادة خاصة</h4><p>يكشف يوميًا وعايز يسرّع الروشتة ويحافظ على ذاكرة المرضى بدون فوضى ورق.</p></div>
+      <div class="card"><h4>عيادة بسكرتارية</h4><p>الحجز والانتظار والتحصيل عند المكتب، والكشف والتقارير عند الطبيب.</p></div>
+      <div class="card"><h4>طبيب يشتغل لوحده</h4><p>وضع «مكتب الحجوزات» من نفس الحساب — بدون حسابين أو أدوار معقّدة.</p></div>
+    </div>
+
+    <h3>المشكلة التي يحلّها</h3>
+    <div class="grid-2">
+      <div class="card white">
+        <h4>قبل ClinicFlow</h4>
+        <ul>
+          <li>أجندة ورق / إكسيل مشتتة</li>
+          <li>روشتة يدوية بطيئة وغير موحّدة</li>
+          <li>نسيان متابعة أو تحصيل بعد الكشف</li>
+          <li>السكرتارية والدكتور على أنظمة مختلفة</li>
+          <li>تقارير الإيراد والتشخيصات غير دقيقة</li>
+        </ul>
+      </div>
+      <div class="card white">
+        <h4>مع ClinicFlow</h4>
+        <ul>
+          <li>مسار يوم واحد من الحجز للتحصيل</li>
+          <li>روشتة وتعليمات مطبوعة بهوية العيادة</li>
+          <li>تنبيه غير المدفوع بعد انتهاء الكشف</li>
+          <li>Realtime بين مكتب الانتظار وشاشة الطبيب</li>
+          <li>لوحة تحكم وتقارير جاهزة للطباعة</li>
+        </ul>
+      </div>
+    </div>
+    <div class="page-num"><span>ClinicFlow — الدليل الشامل للطبيب</span><span>٢</span></div>
+  </section>
+
+  <!-- 3 Problem + Day flow -->
+  <section class="page">
+    <h2 class="section">مسار يوم العيادة (كما يعمل فعليًا)</h2>
+    <p class="lead">النظام مبني على إيقاع العيادة المصرية — مش على داشبورد عام.</p>
+    <div class="flow">
+      <div class="flow-step"><div class="n">١</div><strong>حجز</strong><span>مريض جديد أو قديم · كشف/إعادة</span></div>
+      <div class="flow-step"><div class="n">٢</div><strong>انتظار</strong><span>طابور حيّ بألوان الحالات</span></div>
+      <div class="flow-step"><div class="n">٣</div><strong>كشف</strong><span>وضع تركيز · روشتة · تحاليل</span></div>
+      <div class="flow-step"><div class="n">٤</div><strong>طباعة</strong><span>روشتة · تعليمات · طلبات</span></div>
+      <div class="flow-step"><div class="n">٥</div><strong>تحصيل</strong><span>فاتورة · خزنة · إقفال يوم</span></div>
+    </div>
+
+    <h3>ماذا يقدّم النظام بالتفصيل؟</h3>
+    <div class="grid-2">
+      <div class="card">
+        <h4>١) مكتب الحجوزات والسكرتارية</h4>
+        <ul>
+          <li>بحث مريض بالاسم/الهاتف وإضافة سريعة</li>
+          <li>حجز كشف جديد أو إعادة كشف بأسعار منفصلة</li>
+          <li>غرفة انتظار: انتظار / مع الطبيب / منتهي / غياب</li>
+          <li>متابعة غير المدفوع بعد انتهاء الكشف</li>
+          <li>زر واتساب برسالة تذكير جاهزة</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>٢) شاشة الكشف للطبيب</h4>
+        <ul>
+          <li>وضع تركيز يخفي القوائم ويظهر المريض والطابور</li>
+          <li>تاريخ مرضي + حساسية + علامات حيوية</li>
+          <li>آخر زيارات بجانب الكشف</li>
+          <li>روشتة مع بحث أدوية مصرية وجرعات جاهزة</li>
+          <li>قوالب تعليمات حسب تخصص العيادة</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>٣) الطباعة والهوية</h4>
+        <ul>
+          <li>روشتة بشعار وختم وتوقيع</li>
+          <li>طلب تحاليل وطلب أشعة منظم للمعامل</li>
+          <li>ورقة تعليمات خروج للمريض</li>
+          <li>دعم A4 أو طابعة حرارية من الإعدادات</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>٤) الإدارة والتقارير</h4>
+        <ul>
+          <li>لوحة: مرضى اليوم، انتظار، غياب، إيراد، متابعات</li>
+          <li>تقارير مرضى / إيراد / طبيب / أمراض</li>
+          <li>فواتير وخصومات وخزنة يومية</li>
+          <li>إقفال يوم وتقرير أسبوعي قابل للطباعة</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>لماذا يختلف عن «برنامج مواعيد» عادي؟</h3>
+    <ul class="feature-list">
+      <li>يربط الحجز بالكشف بالطباعة بالتحصيل في حلقة واحدة</li>
+      <li>يتكيّف مع تخصص العيادة (حقول وقوالب وفحوصات)</li>
+      <li>يفصل صلاحيات الطبيب عن السكرتارية بوضوح</li>
+      <li>مصمم لسيناريو مصر: كاش، حراري، واتساب، Excel</li>
+      <li>Realtime يحدّث الانتظار بين الأجهزة فورًا</li>
+      <li>يعمل كتطبيق على الموبايل من الشاشة الرئيسية</li>
+    </ul>
+    <div class="page-num"><span>ClinicFlow — الدليل الشامل للطبيب</span><span>٣</span></div>
+  </section>
+
+  <!-- 4 Roles + Patients -->
+  <section class="page">
+    <h2 class="section">الأدوار والصلاحيات</h2>
+    <div class="roles">
+      <div class="role doctor">
+        <h4>الطبيب / مالك العيادة</h4>
+        <ul>
+          <li>الكشف والروشتة والقرارات الطبية</li>
+          <li>قوالب التخصص والتعليمات</li>
+          <li>لوحة التحكم والتقارير وإقفال اليوم</li>
+          <li>الإعدادات: هوية، أسعار، ساعات، تخصص</li>
+          <li>إدارة صلاحيات الفريق والدعوات</li>
+          <li>فتح مكتب الحجوزات عند العمل بدون سكرتارية</li>
+        </ul>
+      </div>
+      <div class="role desk">
+        <h4>السكرتارية</h4>
+        <ul>
+          <li>شاشة مكتب مخصّصة (Desk) — مش نفس واجهة الطبيب</li>
+          <li>تسجيل الحجوزات وغرفة الانتظار</li>
+          <li>التحصيل ومتابعة المدفوعات</li>
+          <li>التواصل واتساب مع المرضى</li>
+          <li>بدون دخول شاشة الكشف أو التقارير الحساسة</li>
+          <li>صلاحيات قابلة للضبط من لوحة الطبيب</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="section" style="margin-top:14px">ملفات المرضى والكارت الطبي</h2>
+    <p class="lead">كل مريض له رقم ملف تلقائي داخل العيادة — مع استيراد جماعي من Excel لترحيل العيادة القديمة.</p>
+    <div class="grid-2">
+      <div class="card white">
+        <h4>بيانات أساسية</h4>
+        <ul>
+          <li>الاسم، الهاتف، الرقم القومي، تاريخ الميلاد، النوع</li>
+          <li>المهنة، العنوان، الحالة الاجتماعية، فصيلة الدم</li>
+          <li>التأمين، جهة اتصال الطوارئ</li>
+          <li>بحث سريع بالاسم أو الهاتف أثناء المكالمة</li>
+        </ul>
+      </div>
+      <div class="card white">
+        <h4>التاريخ الطبي</h4>
+        <ul>
+          <li>أمراض مزمنة، عمليات، أمراض وراثية</li>
+          <li>حساسية أدوية (تنبيه أثناء الروشتة)</li>
+          <li>تدخين / كحول / حمل / تطعيمات</li>
+          <li>علامات حيوية: ضغط، سكر، وزن، حرارة، نبض، أكسجين</li>
+        </ul>
+      </div>
+      <div class="card white">
+        <h4>سجل الزيارات</h4>
+        <ul>
+          <li>خط زمني لكل كشف: شكوى، فحص، تشخيص، خطة</li>
+          <li>الروشتات والطلبات المرتبطة بالزيارة</li>
+          <li>مرفقات: صور، PDF، نتائج تحاليل/أشعة</li>
+          <li>موعد المتابعة الظاهر في صندوق المتابعات</li>
+        </ul>
+      </div>
+      <div class="card white">
+        <h4>ترحيل العيادة</h4>
+        <ul>
+          <li>استيراد مرضى من ملف Excel</li>
+          <li>هدف الترحيل: تشغيل العيادة خلال ساعة</li>
+          <li>بيانات كل عيادة معزولة عن باقي العيادات</li>
+          <li>لا مشاركة بيانات بين المستأجرين (Multi-tenant)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="page-num"><span>ClinicFlow — الدليل الشامل للطبيب</span><span>٤</span></div>
+  </section>
+
+  <!-- 5 Appointments + Waiting -->
+  <section class="page">
+    <h2 class="section">الحجوزات وغرفة الانتظار</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h4>الحجز من المكتب</h4>
+        <ul>
+          <li>اختيار مريض موجود أو إنشاء سريع (اسم + هاتف)</li>
+          <li>تحديد الطبيب والمدة ووقت الموعد</li>
+          <li>نوع الزيارة: كشف جديد أو إعادة كشف</li>
+          <li>رسوم تلقائية حسب سعر العيادة لكل نوع</li>
+          <li>قائمة حجوزات اليوم مع الحالات</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>غرفة الانتظار الحية</h4>
+        <ul>
+          <li>تحديث فوري بين جهاز السكرتارية والطبيب (Realtime)</li>
+          <li>حالات ملونة: انتظار · مع الطبيب · منتهي · غياب</li>
+          <li>بانر المريض التالي + زمن الانتظار</li>
+          <li>فلاتر سريعة حسب الحالة</li>
+          <li>إجراءات: استدعاء، تأكيد دفع، واتساب، المزيد</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>حلقة التحصيل بعد الكشف</h3>
+    <p class="lead">
+      بعد حفظ الكشف تتغيّر الحالة إلى «منتهي» مع تنبيه أن الدفع لم يكتمل بعد —
+      السكرتارية تحصّل من المكتب والدكتور يكمل المريض التالي بدون ما الفلوس تتنسي.
+    </p>
+    <div class="grid-3">
+      <div class="card white" style="text-align:center"><h4>Done</h4><p>الكشف خلص طبيًا</p></div>
+      <div class="card white" style="text-align:center"><h4>Unpaid</h4><p>بانتظار التحصيل عند المكتب</p></div>
+      <div class="card white" style="text-align:center"><h4>Paid</h4><p>كاش / تحويل / أخرى</p></div>
+    </div>
+
+    <h2 class="section" style="margin-top:14px">المتابعات</h2>
+    <div class="grid-2">
+      <div class="card white">
+        <h4>صندوق المتابعات</h4>
+        <ul>
+          <li>مرضى لديهم موعد متابعة اليوم أو متأخر</li>
+          <li>بطاقات ملونة مع إجراءات: حجز / تم / المزيد</li>
+          <li>مؤشرات سريعة للفرز</li>
+        </ul>
+      </div>
+      <div class="card white">
+        <h4>واتساب</h4>
+        <ul>
+          <li>فتح wa.me برسالة جاهزة (بدون اشتراك Business API)</li>
+          <li>من المكتب أو الانتظار أو المتابعات</li>
+          <li>تطبيع أرقام مصر تلقائيًا</li>
+        </ul>
+      </div>
+    </div>
+    <div class="page-num"><span>ClinicFlow — الدليل الشامل للطبيب</span><span>٥</span></div>
+  </section>
+
+  <!-- 6 Consultation -->
+  <section class="page">
+    <h2 class="section">شاشة الكشف — قلب النظام</h2>
+    <p class="lead">مصمَّمة لتقليل الثواني بين مريض ومريض، مع بقاء السياق الطبي أمامك.</p>
+    <div class="grid-2">
+      <div class="card">
+        <h4>وضع التركيز (Focus)</h4>
+        <ul>
+          <li>إخفاء الشريط الجانبي أثناء الكشف</li>
+          <li>المريض الحالي + الطابور في نفس الشاشة</li>
+          <li>زر الانتقال للمريض التالي بعد الحفظ</li>
+          <li>ملخص سريع: حساسية، أمراض مزمنة، آخر تشخيص</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>محتوى الزيارة</h4>
+        <ul>
+          <li>الشكوى الحالية وتاريخ المرض الحالي</li>
+          <li>الفحص السريري والتشخيص وخطة العلاج</li>
+          <li>ملاحظات + حقول إضافية حسب التخصص</li>
+          <li>موعد المتابعة</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>الروشتة</h4>
+        <ul>
+          <li>بحث أدوية مصرية (قاعدة محلية / استيراد)</li>
+          <li>جرعة ومدة من قوائم جاهزة + مخصص</li>
+          <li>«عند اللزوم» وخيارات شائعة للعيادة المصرية</li>
+          <li>تنبيه أحمر عند تعارض دواء × حساسية مسجّلة</li>
+          <li>مفضلات الطبيب وقوالب روشتة</li>
+          <li>طباعة فورية بعد الحفظ</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>الطلبات والتعليمات</h4>
+        <ul>
+          <li>كتالوج تحاليل حسب تخصص العيادة</li>
+          <li>كتالوج أشعة/تصوير حسب التخصص</li>
+          <li>إمكانية فتح تخصص آخر عند الحاجة</li>
+          <li>قوالب تعليمات جاهزة لكل تخصص + عامة</li>
+          <li>ورقة خروج المريض للطباعة</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>قائمة مميزات الكشف باختصار</h3>
+    <ul class="feature-list">
+      <li>عرض التخصص الحالي في رأس شاشة الكشف</li>
+      <li>اقتراح تحاليل شائعة للتخصص بضغطة</li>
+      <li>طلب جراحة/إجراء كنص حر عند الحاجة</li>
+      <li>حفظ الزيارة مع ربط الموعد وحالة الدفع</li>
+      <li>طباعة روشتة / تعليمات / تحاليل / أشعة من نفس الشاشة</li>
+      <li>دعم طباعة A4 أو حراري حسب إعداد العيادة</li>
+    </ul>
+    <div class="page-num"><span>ClinicFlow — الدليل الشامل للطبيب</span><span>٦</span></div>
+  </section>
+
+  <!-- 7 Specialty + Print -->
+  <section class="page">
+    <h2 class="section">التخصصات الطبية</h2>
+    <p class="lead">
+      تختار تخصص العيادة مرة واحدة من الإعدادات — الواجهة تتكيّف: حقول كشف، تحاليل مقترحة،
+      قوالب تعليمات، وكتالوج فحوصات مناسب.
+    </p>
+    <div class="chip-row">
+      <span class="chip">طب عام</span><span class="chip">باطنة</span><span class="chip">قلب</span>
+      <span class="chip">صدر</span><span class="chip">جهاز هضمي</span><span class="chip">كلى</span>
+      <span class="chip">غدد</span><span class="chip">روماتيزم</span><span class="chip">أعصاب</span>
+      <span class="chip">عظام</span><span class="chip">نساء وتوليد</span><span class="chip">أطفال</span>
+      <span class="chip">جلدية</span><span class="chip">أنف وأذن</span><span class="chip">رمد</span>
+      <span class="chip">أسنان</span><span class="chip">جراحة عامة</span><span class="chip">أورام</span>
+      <span class="chip">دم</span><span class="chip">عدوى</span><span class="chip">نفسية</span>
+      <span class="chip">مخ وأعصاب جراحة</span><span class="chip">تجميل</span><span class="chip">تغذية</span>
+    </div>
+    <div class="grid-2">
+      <div class="card white">
+        <h4>أمثلة على التكيّف</h4>
+        <ul>
+          <li>أطفال: نمو/تطعيمات + تعليمات حرارة وجرعات</li>
+          <li>قلب: تحاليل وتروبونين + تعليمات ألم صدر/سيولة</li>
+          <li>جلدية: موضع الإصابة + تعليمات مراهم</li>
+          <li>نساء: آخر دورة / عمر الحمل + تعليمات حمل</li>
+        </ul>
+      </div>
+      <div class="card white">
+        <h4>كتالوج الفحوصات</h4>
+        <ul>
+          <li>مئات الفحوصات مرتبة حسب التخصص</li>
+          <li>تحاليل وأشعة مع ملاحظات طبية اختيارية</li>
+          <li>بحث بالاسم العربي/الإنجليزي والكود</li>
+          <li>إضافة سطر للطلب بضغطة من الكتالوج</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="section" style="margin-top:12px">الطباعة بهوية العيادة</h2>
+    <table class="specs">
+      <thead>
+        <tr><th>الورقة</th><th>المحتوى</th><th>الاستخدام</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>الروشتة</td><td>أدوية، جرعة، مدة، تشخيص، ختم، توقيع</td><td>الصيدلية / ملف المريض</td></tr>
+        <tr><td>طلب تحاليل</td><td>قائمة مرقّمة + مربعات اختيار + ملاحظات معمل</td><td>المعمل</td></tr>
+        <tr><td>طلب أشعة</td><td>فحوصات التصوير المطلوبة</td><td>مركز الأشعة</td></tr>
+        <tr><td>تعليمات المريض</td><td>تشخيص مختصر، أدوية، تعليمات، متابعة</td><td>ورقة خروج المريض</td></tr>
+        <tr><td>فاتورة</td><td>كشف، خدمات، خصم، إجمالي، طريقة دفع</td><td>المريض / المحاسبة</td></tr>
+        <tr><td>إقفال يوم / تقرير</td><td>ملخص تشغيل وإيراد وتشخيصات</td><td>مالك العيادة</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:8px;font-size:11px;font-weight:600;color:var(--muted)">
+      من الإعدادات: ارفع الشعار والختم والتوقيع، واختر A4 أو حراري أو الاثنين.
+    </p>
+    <div class="page-num"><span>ClinicFlow — الدليل الشامل للطبيب</span><span>٧</span></div>
+  </section>
+
+  <!-- 8 Finance + Reports + Mobile -->
+  <section class="page">
+    <h2 class="section">المالية: فواتير وخزنة</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h4>الفواتير</h4>
+        <ul>
+          <li>ربط ب المريض ورسوم الكشف</li>
+          <li>خدمات إضافية وخصومات</li>
+          <li>طرق دفع مسجّلة (كاش / تحويل / أخرى)</li>
+          <li>طباعة فاتورة بهوية العيادة</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>الخزنة</h4>
+        <ul>
+          <li>تسجيل وارد وصادر يومي</li>
+          <li>متابعة حركة النقدية</li>
+          <li>تكامل مع صورة يوم العيادة على اللوحة</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="section" style="margin-top:12px">لوحة التحكم والتقارير</h2>
+    <div class="grid-2">
+      <div class="card white">
+        <h4>لوحة الطبيب اليومية</h4>
+        <ul>
+          <li>مرضى اليوم · الحجوزات · الانتظار · المنتهي</li>
+          <li>الغياب · المتابعات · غير المدفوع بعد الكشف</li>
+          <li>إيراد اليوم</li>
+          <li>زر إقفال اليوم مع ملخص للطباعة</li>
+          <li>نشاط حديث قابل للطي</li>
+        </ul>
+      </div>
+      <div class="card white">
+        <h4>تقارير الفترة</h4>
+        <ul>
+          <li>فلتر: يومي / أسبوعي / شهري / سنوي</li>
+          <li>المرضى · الإيرادات · أداء الطبيب · الأمراض</li>
+          <li>رسوم بيانية مبسّطة للإيراد والتشخيصات</li>
+          <li>طباعة التقرير الأسبوعي / ملخص الفترة</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="section" style="margin-top:12px">الموبايل و PWA</h2>
+    <div class="grid-3">
+      <div class="card white" style="text-align:center"><h4>متجاوب</h4><p>واجهة مهيأة للهاتف مع شريط تنقل سفلي</p></div>
+      <div class="card white" style="text-align:center"><h4>تثبيت كتطبيق</h4><p>أضفه للشاشة الرئيسية (PWA) على Android/iOS</p></div>
+      <div class="card white" style="text-align:center"><h4>نفس الصلاحيات</h4><p>الطبيب والسكرتارية بنفس الحساب والقواعد</p></div>
+    </div>
+
+    <h3>إعدادات العيادة (هوية وتشغيل)</h3>
+    <ul class="feature-list">
+      <li>اسم العيادة، الهاتف، العنوان، الشعار</li>
+      <li>ساعات العمل لكل يوم (فتح/إغلاق/إجازة)</li>
+      <li>سعر الكشف وسعر إعادة الكشف والضريبة</li>
+      <li>التخصص، الختم، توقيع الطبيب</li>
+      <li>اللغة الافتراضية عربي/إنجليزي وتنسيق الطباعة</li>
+      <li>قائمة إعداد أولي (Setup checklist) لبدء التشغيل</li>
+      <li>قوالب تحاليل/أشعة محفوظة + قوالب تعليمات</li>
+    </ul>
+    <div class="page-num"><span>ClinicFlow — الدليل الشامل للطبيب</span><span>٨</span></div>
+  </section>
+
+  <!-- 9 Security + Start -->
+  <section class="page">
+    <h2 class="section">الأمان والتقنية</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h4>عزل بيانات العيادات</h4>
+        <ul>
+          <li>كل عيادة = مستأجر (Tenant) منفصل منطقيًا</li>
+          <li>سياسات أمان على مستوى الصف (RLS) في قاعدة البيانات</li>
+          <li>لا يمكن لعيادة رؤية مرضى عيادة أخرى</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>الوصول والحسابات</h4>
+        <ul>
+          <li>تسجيل دخول إيميل + كلمة مرور</li>
+          <li>أدوار: طبيب · سكرتارية · إدارة منصة</li>
+          <li>صلاحيات وحدات قابلة للضبط</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>التخزين والمرفقات</h4>
+        <ul>
+          <li>رفع مرفقات طبية بأمان مرتبطة بالعيادة</li>
+          <li>شعارات وأختام على تخزين مخصص</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>السحابة</h4>
+        <ul>
+          <li>يعمل من المتصفح بدون تثبيت معقّد</li>
+          <li>تحديثات مستمرة للمنصة</li>
+          <li>نسخ احتياطي على مستوى البنية السحابية</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="section" style="margin-top:14px">كيف تبدأ خلال يوم؟</h2>
+    <div class="flow" style="grid-template-columns: repeat(4, 1fr);">
+      <div class="flow-step"><div class="n">١</div><strong>إنشاء حساب</strong><span>تسجيل العيادة والطبيب</span></div>
+      <div class="flow-step"><div class="n">٢</div><strong>الهوية</strong><span>شعار · تخصص · أسعار · ساعات</span></div>
+      <div class="flow-step"><div class="n">٣</div><strong>الترحيل</strong><span>استيراد Excel أو إضافة يدوية</span></div>
+      <div class="flow-step"><div class="n">٤</div><strong>التشغيل</strong><span>سكرتارية أو وضع سولو + أول كشف</span></div>
+    </div>
+
+    <h3>ملخص القدرات في نظرة واحدة</h3>
+    <table class="specs">
+      <thead><tr><th>المجال</th><th>القدرات</th></tr></thead>
+      <tbody>
+        <tr><td>المرضى</td><td>ملفات، تاريخ طبي، حيويات، مرفقات، استيراد Excel</td></tr>
+        <tr><td>التشغيل اليومي</td><td>حجز، انتظار Realtime، متابعات، واتساب، تحصيل</td></tr>
+        <tr><td>الطب</td><td>كشف، روشتة، أدوية مصرية، تحاليل/أشعة، تعليمات تخصص</td></tr>
+        <tr><td>الطباعة</td><td>روشتة، طلبات، تعليمات، فاتورة، تقارير — A4/حراري</td></tr>
+        <tr><td>المال والتقارير</td><td>فواتير، خزنة، KPIs، تقارير فترة، إقفال يوم</td></tr>
+        <tr><td>الفريق</td><td>أدوار، صلاحيات، مكتب سكرتارية، وضع بدون سكرتارية</td></tr>
+        <tr><td>الوصول</td><td>ويب + PWA موبايل، عربي/إنجليزي</td></tr>
+      </tbody>
+    </table>
+    <div class="page-num"><span>ClinicFlow — الدليل الشامل للطبيب</span><span>٩</span></div>
+  </section>
+
+  <!-- 10 Pricing + FAQ -->
+  <section class="page">
+    <h2 class="section">خطط الاشتراك الشهرية</h2>
+    <p class="lead">
+      الأسعار بالجنيه المصري شهريًا وتشمل التحديثات والدعم الأساسي.
+      تجربة مجانية <strong>١٤ يومًا</strong> قبل الاشتراك. يمكن خصم شهرين عند الدفع السنوي مقدّمًا.
+    </p>
+    <div class="pricing">
+      <div class="plan">
+        <div class="name">Starter</div>
+        <div class="price"><span class="num">٤٩٩</span> <span class="cur">ج.م</span></div>
+        <div class="period">شهريًا · بداية التشغيل</div>
+        <ul>
+          <li>✓ طبيب + سكرتارية</li>
+          <li>✓ مرضى وحجوزات وانتظار</li>
+          <li>✓ كشف وروشتة وطباعة</li>
+          <li>✓ فواتير وخزنة أساسية</li>
+          <li>✓ تقارير يومية</li>
+          <li>✓ تطبيق موبايل PWA</li>
+          <li>○ تخصص أساسي</li>
+          <li>○ دعم عبر البريد</li>
+        </ul>
+        <div class="fit">لعيادة ناشئة أو أول رقمنة</div>
+      </div>
+      <div class="plan featured">
+        <div class="badge">الأكثر اختيارًا</div>
+        <div class="name">Professional</div>
+        <div class="price"><span class="num">٨٩٩</span> <span class="cur">ج.م</span></div>
+        <div class="period">شهريًا · العيادة النشطة</div>
+        <ul>
+          <li>✓ كل مميزات Starter</li>
+          <li>✓ حتى ٣ مستخدمين</li>
+          <li>✓ قوالب تخصص + كتالوج فحوصات</li>
+          <li>✓ تعليمات حسب التخصص</li>
+          <li>✓ أدوية مصرية في الروشتة</li>
+          <li>✓ تقارير متقدمة + ملخص أسبوعي</li>
+          <li>✓ صلاحيات دقيقة + هوية كاملة</li>
+          <li>✓ دعم واتساب أولوية</li>
+        </ul>
+        <div class="fit">الأنسب لعيادة مصر اليومية</div>
+      </div>
+      <div class="plan">
+        <div class="name">Enterprise</div>
+        <div class="price"><span class="num">١٬٤٩٩</span> <span class="cur">ج.م</span></div>
+        <div class="period">شهريًا · دعم وشراكة أقرب</div>
+        <ul>
+          <li>✓ كل مميزات Professional</li>
+          <li>✓ مستخدمون حسب الاتفاق</li>
+          <li>✓ دعم مخصّص وتدريب عن بُعد</li>
+          <li>✓ مساعدة ترحيل من Excel/نظام قديم</li>
+          <li>✓ تخصيصات خفيفة</li>
+          <li>✓ جاهزية تكامل دفع لاحقًا</li>
+          <li>✓ اتفاقية مستوى خدمة (SLA)</li>
+        </ul>
+        <div class="fit">للعيادات التي تريد تشغيل مدعوم</div>
+      </div>
+    </div>
+
+    <table class="compare" style="margin-top:12px">
+      <thead>
+        <tr><th>البند</th><th>Starter</th><th>Professional</th><th>Enterprise</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>السعر الشهري</td><td>٤٩٩ ج.م</td><td>٨٩٩ ج.م</td><td>١٬٤٩٩ ج.م</td></tr>
+        <tr><td>تقريبي سنوي (بخصم شهرين)</td><td>٤٬٩٩٠ ج.م</td><td>٨٬٩٩٠ ج.م</td><td>١٤٬٩٩٠ ج.م</td></tr>
+        <tr><td>قوالب التخصص + كتالوج الفحوصات</td><td class="no">محدود</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>تقارير متقدمة</td><td class="no">أساسية</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>تدريب وترحيل مدعوم</td><td class="no">—</td><td>جزئي</td><td class="yes">✓</td></tr>
+      </tbody>
+    </table>
+
+    <h3>أسئلة شائعة</h3>
+    <dl class="faq">
+      <dt>هل أحتاج إنترنت دائم؟</dt>
+      <dd>نعم أثناء الاستخدام — النظام سحابي. التثبيت كـ PWA يسهّل الفتح لكن البيانات تحتاج اتصال.</dd>
+      <dt>هل بياناتي تظهر لعيادات أخرى؟</dt>
+      <dd>لا. كل عيادة معزولة بسياسات أمان على مستوى قاعدة البيانات.</dd>
+      <dt>هل ينفع بدون سكرتارية؟</dt>
+      <dd>نعم. افتح مكتب الحجوزات من حساب الطبيب وأدر الحجز والانتظار والتحصيل بنفسك.</dd>
+      <dt>هل الطباعة الحرارية مدعومة؟</dt>
+      <dd>نعم — اختر الحراري أو A4 أو الاثنين من إعدادات العيادة.</dd>
+      <dt>هل يمكن استيراد مرضاي القدامى؟</dt>
+      <dd>نعم عبر Excel، أو الإضافة اليدوية تدريجيًا.</dd>
+    </dl>
+
+    <div class="note">
+      الأسعار قابلة للتعديل حسب العرض التسويقي (إطلاق، سنوي، أو باقة تجريبية ممتدة).
+    </div>
+
+    <div class="cta-box">
+      <h3>جاهز تجرب ClinicFlow في عيادتك؟</h3>
+      <p>
+        ابدأ تجربة ١٤ يومًا — وانقل مرضاك من Excel، واضبط التخصص والشعار، واطبع أول روشتة في نفس اليوم.
+        <br /><br />
+        تواصل مع المطور عبر واتساب:
+        <strong dir="ltr"><a href="https://wa.me/966543641209">0543641209</a></strong>
+      </p>
+    </div>
+    <div class="page-num"><span>ClinicFlow · مصر · يوليو 2026</span><span>١٠ — نهاية الدليل</span></div>
+  </section>
+</body>
+</html>
