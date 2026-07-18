@@ -3,6 +3,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../hooks/useAuth'
+import { BrandLogo } from '../components/BrandLogo'
 import { Icon } from '../components/Icon'
 
 export function SignupPage() {
@@ -47,9 +48,12 @@ export function SignupPage() {
           <div className="absolute -bottom-10 left-10 h-64 w-64 rounded-full bg-secondary-container blur-3xl" />
         </div>
         <div className="relative z-10">
-          <div className="mb-xl flex items-center gap-sm">
-            <Icon name="medical_services" filled className="text-4xl" />
-            <span className="font-headline-md text-headline-md font-bold">{t('appName')}</span>
+          <div className="mb-xl">
+            <BrandLogo
+              size="xl"
+              variant="full"
+              imgClassName="rounded-2xl bg-white p-1.5 shadow-sm"
+            />
           </div>
           <h1 className="mb-md font-display text-display leading-tight">{t('signup.heroTitle')}</h1>
           <p className="max-w-md font-body-lg text-body-lg text-on-primary/85">{t('signup.heroBody')}</p>
@@ -73,7 +77,7 @@ export function SignupPage() {
       <section className="flex w-full flex-col justify-center bg-surface px-lg py-xl lg:w-1/2">
         <div className="mx-auto w-full max-w-md">
           <div className="mb-lg lg:hidden">
-            <h1 className="font-headline-md text-headline-md font-bold text-primary">{t('appName')}</h1>
+            <BrandLogo size="lg" variant="full" />
           </div>
           <h2 className="mb-xs font-headline-lg text-headline-lg text-on-surface">{t('signup.title')}</h2>
           <p className="mb-lg font-body-md text-body-md text-on-surface-variant">{t('signup.hint')}</p>

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useAuth } from '../hooks/useAuth'
 import { useFocusMode } from '../hooks/useFocusMode'
 import { usePermissions, type AppModule } from '../hooks/usePermissions'
+import { BrandLogo } from './BrandLogo'
 import { Icon } from './Icon'
 import { MobileBottomNav } from './MobileBottomNav'
 import { PwaInstallBanner } from './PwaInstallBanner'
@@ -101,9 +102,7 @@ export function AppLayout() {
               className="h-12 w-12 rounded-xl border border-outline-variant object-cover"
             />
           ) : (
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-on-primary">
-              <Icon name="medical_services" filled className="text-3xl" />
-            </div>
+            <BrandLogo size="lg" imgClassName="border border-outline-variant bg-white" />
           )}
           <h1 className="font-headline-md text-headline-md font-bold text-primary">{t('appName')}</h1>
           <p className="font-body-md text-body-md text-on-surface-variant opacity-70">{t('tagline')}</p>

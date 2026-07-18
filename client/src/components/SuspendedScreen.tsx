@@ -1,3 +1,4 @@
+import { BrandLogo } from './BrandLogo'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from '../hooks/useAuth'
 import { SUPPORT_WHATSAPP_DISPLAY, supportWhatsAppUrl } from '../lib/supportContact'
@@ -18,6 +19,7 @@ export function SuspendedScreen() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-background px-md py-lg">
       <div className="w-full max-w-md space-y-md rounded-2xl border border-error/30 bg-surface-container-lowest p-lg text-center shadow-lg">
+        <BrandLogo size="lg" className="mx-auto justify-center" imgClassName="border border-outline-variant bg-white" />
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-error-container text-error">
           <Icon name="block" filled className="text-3xl" />
         </div>

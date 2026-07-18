@@ -3,6 +3,7 @@ import { Link, Navigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../hooks/useAuth'
+import { BrandLogo } from '../components/BrandLogo'
 import { Icon } from '../components/Icon'
 
 export function LoginPage() {
@@ -42,9 +43,12 @@ export function LoginPage() {
         </div>
 
         <div className="relative z-10">
-          <div className="mb-xl flex items-center gap-sm">
-            <Icon name="medical_services" filled className="text-4xl" />
-            <span className="font-headline-md text-headline-md font-bold">{t('appName')}</span>
+          <div className="mb-xl">
+            <BrandLogo
+              size="xl"
+              variant="full"
+              imgClassName="rounded-2xl bg-white p-1.5 shadow-sm"
+            />
           </div>
           <span className="mb-md inline-block rounded-full bg-white/15 px-md py-xs font-label-md text-label-md">
             ClinicFlow v2.0
@@ -77,9 +81,8 @@ export function LoginPage() {
       <section className="flex w-full flex-col justify-center bg-surface-container-lowest px-lg py-xl lg:w-1/2">
         <div className="mx-auto w-full max-w-md">
           <div className="mb-xl">
-            <div className="mb-xs flex items-center gap-sm">
-              <Icon name="medical_services" filled className="text-4xl text-primary" />
-              <h1 className="font-headline-md text-headline-md font-bold text-primary">{t('appName')}</h1>
+            <div className="mb-xs">
+              <BrandLogo size="lg" variant="full" />
             </div>
             <p className="font-body-md text-body-md text-on-surface-variant">{t('auth.welcomeBack')}</p>
           </div>

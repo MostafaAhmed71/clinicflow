@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Icon } from './Icon'
+import { BrandLogo } from './BrandLogo'
 
 type BeforeInstallPromptEvent = Event & {
   prompt: () => Promise<void>
@@ -33,9 +33,7 @@ export function PwaInstallBanner() {
   return (
     <div className="cf-pwa-banner lg:hidden" role="status">
       <div className="flex min-w-0 flex-1 items-start gap-sm">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary text-on-primary">
-          <Icon name="install_mobile" className="text-xl" />
-        </div>
+        <BrandLogo size="md" imgClassName="border border-outline-variant bg-white" />
         <div className="min-w-0">
           <div className="text-sm font-bold text-on-surface">{t('pwa.installTitle')}</div>
           <p className="text-xs text-on-surface-variant">{t('pwa.installHint')}</p>

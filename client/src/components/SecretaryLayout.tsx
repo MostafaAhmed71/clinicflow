@@ -2,6 +2,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from '../hooks/useAuth'
 import { useDeskCounts } from '../hooks/useDeskCounts'
+import { BrandLogo } from './BrandLogo'
 import { Icon } from './Icon'
 import { MobileBottomNav } from './MobileBottomNav'
 import { PwaInstallBanner } from './PwaInstallBanner'
@@ -29,9 +30,10 @@ export function SecretaryLayout() {
                 className="h-10 w-10 shrink-0 rounded-xl border border-white/25 object-cover shadow-sm sm:h-11 sm:w-11"
               />
             ) : (
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/15 ring-1 ring-white/20 sm:h-11 sm:w-11">
-                <Icon name="desk" filled />
-              </div>
+              <BrandLogo
+                size="md"
+                imgClassName="shrink-0 rounded-xl border border-white/25 bg-white shadow-sm sm:h-11 sm:w-11"
+              />
             )}
             <div className="min-w-0">
               <div className="truncate text-base font-bold tracking-tight sm:text-lg">{t('secretary.desk')}</div>

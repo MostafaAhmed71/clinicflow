@@ -595,9 +595,7 @@ export function AdminPage() {
       <header className="sticky top-0 z-40 border-b border-outline-variant bg-surface-container-lowest/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-md px-md py-md sm:px-lg">
           <div className="flex min-w-0 items-center gap-md">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-on-primary">
-              <Icon name="admin_panel_settings" filled />
-            </div>
+            <BrandLogo size="md" imgClassName="border border-outline-variant bg-white" />
             <div className="min-w-0">
               <h1 className="truncate text-lg font-bold text-primary sm:text-xl">{t('admin.title')}</h1>
               <p className="truncate text-xs text-on-surface-variant">
