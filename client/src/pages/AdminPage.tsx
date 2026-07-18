@@ -12,6 +12,7 @@ import { ar, enUS } from 'date-fns/locale'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../hooks/useAuth'
 import { Icon } from '../components/Icon'
+import { BrandLogo } from '../components/BrandLogo'
 import { Toast } from '../components/Toast'
 import { getSpecialtyPack } from '../lib/specialtyPacks'
 import {
