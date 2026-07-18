@@ -433,7 +433,7 @@ export function AdminPage() {
 
   async function createInvoice(e: FormEvent) {
     e.preventDefault()
-    if (!billTenantId) return
+    if (!billTenantId || !user) return
     setBusy(true)
     setError(null)
 
