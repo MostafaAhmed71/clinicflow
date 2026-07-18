@@ -12,7 +12,6 @@ import { ar, enUS } from 'date-fns/locale'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../hooks/useAuth'
 import { Icon } from '../components/Icon'
-import { BrandLogo } from '../components/BrandLogo'
 import { Toast } from '../components/Toast'
 import { getSpecialtyPack } from '../lib/specialtyPacks'
 import {
@@ -596,7 +595,12 @@ export function AdminPage() {
       <header className="sticky top-0 z-40 border-b border-outline-variant bg-surface-container-lowest/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-md px-md py-md sm:px-lg">
           <div className="flex min-w-0 items-center gap-md">
-            <BrandLogo size="md" imgClassName="border border-outline-variant bg-white" />
+            <img
+              src="/clinicflow-logo.png"
+              alt="ClinicFlow"
+              className="h-10 w-10 rounded-xl border border-outline-variant bg-white object-contain"
+              draggable={false}
+            />
             <div className="min-w-0">
               <h1 className="truncate text-lg font-bold text-primary sm:text-xl">{t('admin.title')}</h1>
               <p className="truncate text-xs text-on-surface-variant">
