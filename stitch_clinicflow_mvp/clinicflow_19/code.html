@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>إنشاء حساب | ClinicFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#dce9ff",
+                    "primary-container": "#007bb9",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#004b73",
+                    "surface-variant": "#d3e4fe",
+                    "tertiary-container": "#727577",
+                    "primary-fixed": "#cce5ff",
+                    "inverse-primary": "#93ccff",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#86f2e4",
+                    "outline": "#707881",
+                    "secondary": "#006a61",
+                    "secondary-fixed": "#89f5e7",
+                    "tertiary": "#595c5e",
+                    "inverse-surface": "#213145",
+                    "on-surface": "#0b1c30",
+                    "surface-dim": "#cbdbf5",
+                    "surface": "#f8f9ff",
+                    "on-secondary-container": "#006f66",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#e0e3e5",
+                    "on-tertiary-fixed-variant": "#444749",
+                    "on-surface-variant": "#3f4850",
+                    "secondary-fixed-dim": "#6bd8cb",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-tertiary-container": "#fbfdff",
+                    "on-secondary-fixed": "#00201d",
+                    "outline-variant": "#bfc7d2",
+                    "on-secondary-fixed-variant": "#005049",
+                    "surface-container-low": "#eff4ff",
+                    "surface-tint": "#006398",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#93ccff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#f8f9ff",
+                    "on-primary-fixed": "#001d31",
+                    "on-tertiary-fixed": "#191c1e",
+                    "primary": "#006194",
+                    "inverse-on-surface": "#eaf1ff",
+                    "tertiary-fixed-dim": "#c4c7c9",
+                    "on-background": "#0b1c30",
+                    "background": "#f8f9ff",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#fdfcff",
+                    "surface-container": "#e5eeff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sidebar-width": "260px",
+                    "xl": "32px",
+                    "xs": "4px",
+                    "sidebar-collapsed": "80px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "base": "4px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["IBM Plex Sans Arabic"],
+                    "body-lg": ["IBM Plex Sans Arabic"],
+                    "title-lg": ["IBM Plex Sans Arabic"],
+                    "headline-lg": ["IBM Plex Sans Arabic"],
+                    "headline-md": ["IBM Plex Sans Arabic"],
+                    "body-md": ["IBM Plex Sans Arabic"],
+                    "label-md": ["IBM Plex Sans Arabic"],
+                    "display": ["IBM Plex Sans Arabic"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #f8f9ff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-0 m-0 overflow-x-hidden">
+<main class="w-full min-h-screen flex flex-row-reverse">
+<!-- Right Side: Visual/Branding (Clinical Precision) -->
+<section class="hidden lg:flex lg:w-1/2 relative bg-primary items-center justify-center overflow-hidden">
+<!-- Animated Ambient Background -->
+
+<div class="relative z-10 p-xl text-right max-w-xl">
+<div class="mb-lg">
+<span class="inline-flex items-center justify-center p-md bg-surface-container-lowest rounded-xl shadow-lg mb-md">
+<span class="material-symbols-outlined text-primary text-[48px]">clinical_notes</span>
+</span>
+<h1 class="font-display text-display text-on-primary mb-sm leading-tight">ClinicFlow</h1>
+<p class="font-headline-md text-headline-md text-primary-fixed leading-relaxed">إدارة العيادة الذكية بكل سهولة وموثوقية.</p>
+</div>
+<div class="space-y-md">
+<div class="flex items-start gap-md text-on-primary opacity-90">
+<span class="material-symbols-outlined mt-1">verified_user</span>
+<div>
+<h3 class="font-title-lg text-title-lg mb-1">خصوصية البيانات</h3>
+<p class="font-body-md text-body-md opacity-80">نظامنا يتوافق مع المعايير العالمية لحماية السجلات الطبية للمرضى.</p>
+</div>
+</div>
+<div class="flex items-start gap-md text-on-primary opacity-90">
+<span class="material-symbols-outlined mt-1">speed</span>
+<div>
+<h3 class="font-title-lg text-title-lg mb-1">سرعة الأداء</h3>
+<p class="font-body-md text-body-md opacity-80">واجهة مستخدم سريعة وسلسة توفر وقتك وتركز على مريضك.</p>
+</div>
+</div>
+</div>
+<!-- Abstract Decorative Card -->
+<div class="mt-xl p-lg glass-effect rounded-xl shadow-xl border-outline-variant/20 flex items-center gap-md max-w-sm ml-auto">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container">pulse_alert</span>
+</div>
+<div class="text-on-surface">
+<p class="font-label-md text-label-md text-on-surface-variant mb-0">الحالات النشطة اليوم</p>
+<p class="font-headline-md text-headline-md font-bold">٢٤ مريض</p>
+</div>
+</div>
+</div>
+<!-- Subtle Texture Overlay -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png');"></div>
+</section>
+<!-- Left Side: Sign Up Form -->
+<section class="w-full lg:w-1/2 flex items-center justify-center bg-surface px-lg py-xl">
+<div class="max-w-[480px] w-full">
+<div class="mb-xl text-center lg:text-right">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">إنشاء حساب جديد</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">انضم إلى مجتمع الأطباء المتميزين في ClinicFlow</p>
+</div>
+<form class="space-y-md">
+<!-- Full Name -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant px-1 block" for="full-name">الاسم الكامل</label>
+<div class="relative">
+<input class="w-full h-12 px-lg bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-body-md text-body-md outline-none" id="full-name" placeholder="د. أحمد محمد" type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">person</span>
+</div>
+</div>
+<!-- Clinic Name -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant px-1 block" for="clinic-name">اسم العيادة</label>
+<div class="relative">
+<input class="w-full h-12 px-lg bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-body-md text-body-md outline-none" id="clinic-name" placeholder="مركز الأمل الطبي" type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">medical_services</span>
+</div>
+</div>
+<!-- Medical Specialty (Dropdown) -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant px-1 block" for="specialty">التخصص الطبي</label>
+<div class="relative">
+<select class="w-full h-12 px-lg bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-body-md text-body-md outline-none appearance-none" id="specialty">
+<option disabled="" selected="" value="">اختر التخصص</option>
+<option value="general">طب عام</option>
+<option value="cardiology">أمراض القلب</option>
+<option value="pediatrics">طب الأطفال</option>
+<option value="orthopedics">جراحة العظام</option>
+<option value="dermatology">الأمراض الجلدية</option>
+</select>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Email Address -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant px-1 block" for="email">البريد الإلكتروني</label>
+<div class="relative">
+<input class="w-full h-12 px-lg bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-body-md text-body-md outline-none text-left" dir="ltr" id="email" placeholder="name@clinicflow.com" type="email"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">mail</span>
+</div>
+</div>
+<!-- Password -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant px-1 block" for="password">كلمة المرور</label>
+<div class="relative">
+<input class="w-full h-12 px-lg bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-body-md text-body-md outline-none text-left" dir="ltr" id="password" placeholder="••••••••" type="password"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">lock</span>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="w-full h-12 bg-primary text-on-primary font-title-lg text-title-lg rounded-lg shadow-md hover:bg-primary-container active:scale-[0.98] transition-all flex items-center justify-center gap-sm mt-lg" type="submit">
+<span class="material-symbols-outlined">person_add</span>
+                        إنشاء الحساب
+                    </button>
+<!-- Divider -->
+<div class="relative py-md flex items-center gap-md">
+<div class="flex-grow border-t border-outline-variant"></div>
+<span class="font-label-md text-label-md text-outline">أو سجل عبر</span>
+<div class="flex-grow border-t border-outline-variant"></div>
+</div>
+<!-- Social Sign Up -->
+<button class="w-full h-12 border border-outline-variant bg-surface-container-lowest text-on-surface font-title-lg text-title-lg rounded-lg hover:bg-surface-container-low active:scale-[0.98] transition-all flex items-center justify-center gap-md" type="button">
+<div class="w-5 h-5 flex items-center justify-center">
+<svg height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 12-4.53z" fill="#EA4335"></path>
+</svg>
+</div>
+                        التسجيل بواسطة Google
+                    </button>
+</form>
+<!-- Login Link -->
+<div class="mt-xl text-center">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        لديك حساب بالفعل؟
+                        <a class="text-primary font-bold hover:underline" href="#">تسجيل الدخول</a>
+</p>
+</div>
+</div>
+</section>
+</main>
+<script>
+        // Form field focus interactions
+        const inputs = document.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.parentElement.querySelector('label').classList.add('text-primary');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.parentElement.querySelector('label').classList.remove('text-primary');
+            });
+        });
+
+        // Submit form placeholder interaction
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> جاري معالجة البيانات...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+                alert('تم إنشاء الحساب بنجاح! سيتم توجيهك إلى لوحة القيادة.');
+            }, 1500);
+        });
+    </script>
+</body></html>

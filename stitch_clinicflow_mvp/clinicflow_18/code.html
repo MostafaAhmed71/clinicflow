@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>تسجيل الدخول | ClinicFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#dce9ff",
+                        "primary-container": "#007bb9",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#004b73",
+                        "surface-variant": "#d3e4fe",
+                        "tertiary-container": "#727577",
+                        "primary-fixed": "#cce5ff",
+                        "inverse-primary": "#93ccff",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#86f2e4",
+                        "outline": "#707881",
+                        "secondary": "#006a61",
+                        "secondary-fixed": "#89f5e7",
+                        "tertiary": "#595c5e",
+                        "inverse-surface": "#213145",
+                        "on-surface": "#0b1c30",
+                        "surface-dim": "#cbdbf5",
+                        "surface": "#f8f9ff",
+                        "on-secondary-container": "#006f66",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#e0e3e5",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "on-surface-variant": "#3f4850",
+                        "secondary-fixed-dim": "#6bd8cb",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-tertiary-container": "#fbfdff",
+                        "on-secondary-fixed": "#00201d",
+                        "outline-variant": "#bfc7d2",
+                        "on-secondary-fixed-variant": "#005049",
+                        "surface-container-low": "#eff4ff",
+                        "surface-tint": "#006398",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#93ccff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f8f9ff",
+                        "on-primary-fixed": "#001d31",
+                        "on-tertiary-fixed": "#191c1e",
+                        "primary": "#006194",
+                        "inverse-on-surface": "#eaf1ff",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "on-background": "#0b1c30",
+                        "background": "#f8f9ff",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#fdfcff",
+                        "surface-container": "#e5eeff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sidebar-width": "260px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "sidebar-collapsed": "80px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "base": "4px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["IBM Plex Sans Arabic"],
+                        "headline-md": ["IBM Plex Sans Arabic"],
+                        "title-lg": ["IBM Plex Sans Arabic"],
+                        "body-lg": ["IBM Plex Sans Arabic"],
+                        "body-md": ["IBM Plex Sans Arabic"],
+                        "label-md": ["IBM Plex Sans Arabic"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #f8f9ff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .login-card-shadow {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex items-center justify-center p-md lg:p-0">
+<main class="w-full max-w-[1440px] min-h-[1024px] lg:min-h-[800px] flex overflow-hidden lg:rounded-xl lg:shadow-xl bg-surface-container-lowest">
+<!-- Left Side: Login Form -->
+<section class="flex-1 flex flex-col justify-center px-lg sm:px-xl py-xl bg-surface-container-lowest z-10">
+<div class="max-w-md w-full mx-auto">
+<!-- Brand Identity -->
+<div class="mb-xl text-right">
+<div class="flex items-center gap-sm mb-xs">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+<h1 class="font-headline-md text-headline-md text-primary font-bold">ClinicFlow</h1>
+</div>
+<p class="font-body-md text-on-surface-variant">إدارة العيادة الذكية - مرحباً بك مرة أخرى</p>
+</div>
+<!-- Login Header -->
+<div class="mb-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">تسجيل الدخول</h2>
+<p class="font-body-md text-on-surface-variant">أدخل بياناتك للوصول إلى لوحة التحكم الخاصة بك</p>
+</div>
+<!-- Form -->
+<form action="#" class="space-y-lg" onsubmit="return false;">
+<!-- Email Field -->
+<div class="space-y-base">
+<label class="block font-label-md text-label-md text-on-surface-variant mr-xs" for="identifier">البريد الإلكتروني أو اسم المستخدم</label>
+<div class="relative">
+<input class="w-full px-lg py-md rounded-lg border border-outline-variant bg-surface text-on-surface focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none" id="identifier" name="identifier" placeholder="example@clinic.com" required="" type="text"/>
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">alternate_email</span>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-base">
+<div class="flex justify-between items-center px-xs">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="password">كلمة المرور</label>
+<a class="font-label-md text-label-md text-primary hover:underline transition-colors" href="#">نسيت كلمة المرور؟</a>
+</div>
+<div class="relative">
+<input class="w-full px-lg py-md rounded-lg border border-outline-variant bg-surface text-on-surface focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute left-4 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<!-- Remember Me -->
+<div class="flex items-center gap-sm px-xs">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary cursor-pointer" id="remember" name="remember" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface-variant cursor-pointer select-none" for="remember">تذكرني في المرة القادمة</label>
+</div>
+<!-- Submit Button -->
+<button class="w-full bg-primary hover:bg-primary-container text-on-primary font-bold py-md rounded-lg shadow-md hover:shadow-lg active:scale-[0.98] transition-all duration-200 flex justify-center items-center gap-sm" type="submit">
+<span>دخول</span>
+<span class="material-symbols-outlined">login</span>
+</button>
+<!-- Divider -->
+<div class="relative my-xl">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-outline-variant"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="px-md bg-surface-container-lowest text-on-surface-variant font-label-md">أو سجل دخول بواسطة</span>
+</div>
+</div>
+<!-- Social Login -->
+<button class="w-full flex items-center justify-center gap-sm py-md px-lg border border-outline-variant rounded-lg bg-surface-container-lowest hover:bg-surface-container-low transition-colors duration-200 font-body-md text-on-surface" type="button">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.65l-3.57-2.77c-.99.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+<span>جوجل</span>
+</button>
+</form>
+<!-- Footer Links -->
+<p class="mt-xl text-center font-body-md text-on-surface-variant">
+                    ليس لديك حساب؟ 
+                    <a class="text-primary font-bold hover:underline" href="#">اتصل بالإدارة</a>
+</p>
+</div>
+</section>
+<!-- Right Side: Decorative Image & Messaging -->
+<section class="hidden lg:flex flex-1 relative items-center justify-center p-xl overflow-hidden">
+<!-- Background Image -->
+<div class="absolute inset-0 z-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A hyper-realistic, wide-angle shot of a modern, luxury medical clinic interior. The space features sleek, minimalist architecture with clean white surfaces, soft recessed lighting, and a few high-end wooden accents. In the background, a professional medical receptionist in a navy blue uniform is visible at a glass desk. The atmosphere is serene, high-tech, and clinical, utilizing a cool color palette of whites and medical blues to evoke trust and precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBi6CCqKg72-SNHxg8xjk_nU9iMvOJvmU39Xtl4QUEecMxb_THLWs2QQhT9M0oupLjqihSe5otJbvqkbkbPsE01qzyF9zgEABQzdlL-VVToFXiSSszE1tA93t4v0XBCqbIpu74FtOgcPeDMAoi6DsGgMoqFDV7Yu89dOv6BuUl0Z0zNGp7xI7bcA09yHopj1S9VwI8rhAYm8lrTKF-HgC-S1Vp0lSmtOoiYw8JA8NsYLp4a3j1bK5KtLZvin1NdwpeE-1I1rVdrPPMY"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+</div>
+<!-- Content Overlay -->
+<div class="relative z-10 glass-effect p-xl rounded-2xl border border-white/20 max-w-lg text-right">
+<div class="mb-lg">
+<span class="inline-block bg-primary-container text-on-primary-container font-label-md px-md py-xs rounded-full mb-md">ClinicFlow v2.0</span>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-md">تجربة طبية ذكية ومتكاملة</h3>
+<p class="font-body-lg text-on-surface-variant leading-relaxed">
+                        نحن نسعى لتوفير الأدوات التي تساعدك على تقديم أفضل رعاية لمرضاك. نظام ClinicFlow مصمم لتبسيط العمليات اليومية في عيادتك وزيادة الإنتاجية.
+                    </p>
+</div>
+<!-- Feature Mini List -->
+<div class="grid grid-cols-2 gap-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary bg-secondary-container/30 p-xs rounded-lg">speed</span>
+<span class="font-label-md text-on-surface-variant">أداء فائق السرعة</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary bg-secondary-container/30 p-xs rounded-lg">security</span>
+<span class="font-label-md text-on-surface-variant">أمن بيانات عالي</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary bg-secondary-container/30 p-xs rounded-lg">analytics</span>
+<span class="font-label-md text-on-surface-variant">تقارير مفصلة</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary bg-secondary-container/30 p-xs rounded-lg">group</span>
+<span class="font-label-md text-on-surface-variant">إدارة الفريق</span>
+</div>
+</div>
+</div>
+<!-- Subtle Decorative Element -->
+<div class="absolute bottom-10 right-10 flex gap-xs">
+<div class="w-12 h-1 bg-white/40 rounded-full"></div>
+<div class="w-4 h-1 bg-white/20 rounded-full"></div>
+<div class="w-4 h-1 bg-white/20 rounded-full"></div>
+</div>
+</section>
+</main>
+<script>
+        // Simple micro-interactions
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('scale-[1.01]');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('scale-[1.01]');
+            });
+        });
+
+        // Toggle Password Visibility
+        const togglePass = document.querySelector('button .material-symbols-outlined');
+        if(togglePass && togglePass.innerText === 'visibility') {
+            togglePass.parentElement.addEventListener('click', function() {
+                const passInput = document.getElementById('password');
+                if (passInput.type === 'password') {
+                    passInput.type = 'text';
+                    this.innerHTML = '<span class="material-symbols-outlined">visibility_off</span>';
+                } else {
+                    passInput.type = 'password';
+                    this.innerHTML = '<span class="material-symbols-outlined">visibility</span>';
+                }
+            });
+        }
+    </script>
+</body></html>

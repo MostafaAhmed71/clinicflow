@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ClinicFlow | تقارير الأمراض والتحاليل</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#0b1c30",
+                    "on-secondary-container": "#006f66",
+                    "on-primary-container": "#fdfcff",
+                    "tertiary": "#595c5e",
+                    "on-tertiary-container": "#fbfdff",
+                    "on-primary-fixed-variant": "#004b73",
+                    "on-primary-fixed": "#001d31",
+                    "on-secondary-fixed-variant": "#005049",
+                    "surface-container-highest": "#d3e4fe",
+                    "secondary-fixed-dim": "#6bd8cb",
+                    "surface-container-high": "#dce9ff",
+                    "primary-fixed-dim": "#93ccff",
+                    "surface-variant": "#d3e4fe",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#213145",
+                    "background": "#f8f9ff",
+                    "primary-container": "#007bb9",
+                    "on-tertiary-fixed": "#191c1e",
+                    "tertiary-container": "#727577",
+                    "on-secondary-fixed": "#00201d",
+                    "tertiary-fixed-dim": "#c4c7c9",
+                    "on-surface-variant": "#3f4850",
+                    "outline-variant": "#bfc7d2",
+                    "secondary": "#006a61",
+                    "on-background": "#0b1c30",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface-container-low": "#eff4ff",
+                    "surface-container": "#e5eeff",
+                    "primary": "#006194",
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#006398",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#89f5e7",
+                    "inverse-primary": "#93ccff",
+                    "on-primary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#f8f9ff",
+                    "tertiary-fixed": "#e0e3e5",
+                    "primary-fixed": "#cce5ff",
+                    "secondary-container": "#86f2e4",
+                    "surface-dim": "#cbdbf5",
+                    "on-tertiary-fixed-variant": "#444749",
+                    "surface": "#f8f9ff",
+                    "on-secondary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "outline": "#707881"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "32px",
+                    "md": "16px",
+                    "sidebar-width": "260px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "sidebar-collapsed": "80px",
+                    "lg": "24px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "label-md": ["IBM Plex Sans Arabic"],
+                    "body-md": ["IBM Plex Sans Arabic"],
+                    "headline-lg": ["IBM Plex Sans Arabic"],
+                    "body-lg": ["IBM Plex Sans Arabic"],
+                    "title-lg": ["IBM Plex Sans Arabic"],
+                    "headline-md": ["IBM Plex Sans Arabic"],
+                    "display": ["IBM Plex Sans Arabic"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #f8f9ff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid #e2e8f0;
+        }
+        .chart-bar {
+            transition: width 1s ease-in-out;
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- TopNavBar -->
+<nav class="flex justify-between items-center px-lg h-16 w-full sticky top-0 z-50 bg-surface dark:bg-on-surface border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-md">
+<span class="font-display text-display text-primary dark:text-primary-fixed-dim">ClinicFlow</span>
+<div class="hidden md:flex gap-md mr-lg">
+<a class="text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low transition-colors px-sm py-xs rounded cursor-pointer">الرئيسية</a>
+<a class="text-primary font-bold border-b-2 border-primary font-label-md text-label-md px-sm py-xs cursor-pointer">التقارير</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low transition-colors px-sm py-xs rounded cursor-pointer">المرضى</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="bg-surface-container-low border-none rounded-full pr-10 pl-4 py-2 text-body-md focus:ring-2 focus:ring-primary w-64" placeholder="بحث سريع..." type="text"/>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer p-2 hover:bg-surface-container-low rounded-full">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer p-2 hover:bg-surface-container-low rounded-full">help</span>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a middle-aged male doctor with a kind expression, wearing a crisp white clinical coat and a stethoscope, in a high-key bright medical office setting. The lighting is soft and clinical, emphasizing a modern light-mode UI aesthetic with clean blues and whites. The overall mood is expert, reliable, and hygienic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwEFsN6hYrbJ2FTNDJdgKB5qls1PoMTdjdKp2IjMSgMllTTayenJpJ3EdLCMk2NFtxqUHxWEv1NkJS5zD1dyuknLg9I_vl89WY7bWrITOmdUXoGPccc1Natkq4r4LP6nsaVyaORlLYtwcYHAWaMRmBnbK5xJK6l8zlrN6qdJ4N6EnIbeEJSRDW5IiU3MrHyTTDub2T7C4SXykj5lliEDyp5Qw6FXyEyAwi1qxO3K4RM9623Rn-U7mjxFUgD_rQBi2xGh4DaI4655Nm"/>
+</div>
+</div>
+</nav>
+<div class="flex">
+<!-- SideNavBar -->
+<aside class="fixed right-0 top-0 h-screen w-sidebar-width flex flex-col p-md z-40 bg-surface-container-low dark:bg-on-surface border-l border-outline-variant hidden lg:flex">
+<div class="mb-xl flex items-center gap-sm">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">medical_services</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim leading-none">ClinicFlow</h1>
+<p class="text-label-md text-on-surface-variant">مساعدك الذكي</p>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<div class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg cursor-pointer active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">لوحة التحكم</span>
+</div>
+<div class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg cursor-pointer active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md text-label-md">المرضى</span>
+</div>
+<div class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg cursor-pointer active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-label-md text-label-md">المواعيد</span>
+</div>
+<div class="flex items-center gap-md px-md py-sm bg-secondary-container text-on-secondary-container rounded-lg font-bold cursor-pointer active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">التقارير</span>
+</div>
+<div class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg cursor-pointer active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-md text-label-md">المالية</span>
+</div>
+<div class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg cursor-pointer active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">الإعدادات</span>
+</div>
+</nav>
+<button class="bg-primary text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 mb-md hover:shadow-lg transition-all active:scale-95">
+<span class="material-symbols-outlined">add</span>
+<span>موعد جديد</span>
+</button>
+<div class="border-t border-outline-variant pt-md">
+<div class="flex items-center gap-md px-md py-sm text-error hover:bg-error-container/20 transition-all rounded-lg cursor-pointer">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">تسجيل الخروج</span>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 lg:mr-sidebar-width p-lg">
+<header class="mb-xl flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">تحليلات الأمراض والتشخيصات</h2>
+<p class="text-body-lg text-on-surface-variant">نظرة عامة على البيانات الطبية وتوزيع الحالات الوبائية والسريرية.</p>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center gap-sm px-md py-2 bg-surface-container border border-outline-variant rounded-lg text-label-md hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[20px]">filter_alt</span>
+                        تصفية التاريخ
+                    </button>
+<button class="flex items-center gap-sm px-md py-2 bg-primary text-white rounded-lg text-label-md hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                        تصدير التقرير
+                    </button>
+</div>
+</header>
+<!-- Bento Stats Grid -->
+<div class="bento-grid mb-xl">
+<!-- Summary Card 1 -->
+<div class="col-span-12 md:col-span-4 glass-card p-lg rounded-2xl flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="p-3 bg-primary-container rounded-xl text-on-primary-container">
+<span class="material-symbols-outlined">vital_signs</span>
+</div>
+<span class="text-secondary font-bold text-label-md">+12% هذا الشهر</span>
+</div>
+<div class="mt-md">
+<p class="text-on-surface-variant text-label-md mb-xs">إجمالي التشخيصات</p>
+<h3 class="font-display text-display">1,482</h3>
+</div>
+</div>
+<!-- Summary Card 2 -->
+<div class="col-span-12 md:col-span-4 glass-card p-lg rounded-2xl flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="p-3 bg-secondary-container rounded-xl text-on-secondary-container">
+<span class="material-symbols-outlined">biotech</span>
+</div>
+<span class="text-secondary font-bold text-label-md">+5.4%</span>
+</div>
+<div class="mt-md">
+<p class="text-on-surface-variant text-label-md mb-xs">التحاليل المطلوبة</p>
+<h3 class="font-display text-display">893</h3>
+</div>
+</div>
+<!-- Summary Card 3 -->
+<div class="col-span-12 md:col-span-4 glass-card p-lg rounded-2xl flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="p-3 bg-error-container rounded-xl text-on-error-container">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<span class="text-error font-bold text-label-md">انتباه: حالات تنفسية</span>
+</div>
+<div class="mt-md">
+<p class="text-on-surface-variant text-label-md mb-xs">الأمراض المعدية المرصودة</p>
+<h3 class="font-display text-display">24</h3>
+</div>
+</div>
+<!-- Chart: Top Diseases -->
+<div class="col-span-12 md:col-span-7 glass-card p-lg rounded-2xl">
+<div class="flex justify-between items-center mb-lg">
+<h4 class="font-title-lg text-title-lg font-bold">أكثر الأمراض انتشاراً</h4>
+<span class="text-label-md text-on-surface-variant">الربع السنوي الأخير</span>
+</div>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between text-body-md mb-2">
+<span>ارتفاع ضغط الدم الشرياني</span>
+<span class="font-bold">342 حالة</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-3">
+<div class="bg-primary h-3 rounded-full chart-bar" style="width: 85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-body-md mb-2">
+<span>داء السكري (النوع الثاني)</span>
+<span class="font-bold">281 حالة</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-3">
+<div class="bg-primary/80 h-3 rounded-full chart-bar" style="width: 70%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-body-md mb-2">
+<span>التهابات الجهاز التنفسي العلوي</span>
+<span class="font-bold">195 حالة</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-3">
+<div class="bg-primary/60 h-3 rounded-full chart-bar" style="width: 55%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-body-md mb-2">
+<span>فقر الدم (الأنيميا)</span>
+<span class="font-bold">156 حالة</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-3">
+<div class="bg-primary/40 h-3 rounded-full chart-bar" style="width: 45%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Chart: Age Distribution -->
+<div class="col-span-12 md:col-span-5 glass-card p-lg rounded-2xl relative overflow-hidden">
+<h4 class="font-title-lg text-title-lg font-bold mb-lg">التوزيع حسب الفئة العمرية</h4>
+<div class="flex justify-center items-center h-48 mb-lg">
+<div class="relative w-40 h-40">
+<!-- Circular Graphic Representation -->
+<svg class="w-full h-full transform -rotate-90">
+<circle cx="50%" cy="50%" fill="transparent" r="40%" stroke="#e5eeff" stroke-width="20"></circle>
+<circle cx="50%" cy="50%" fill="transparent" r="40%" stroke="#006194" stroke-dasharray="100 151" stroke-width="20"></circle>
+<circle cx="50%" cy="50%" fill="transparent" r="40%" stroke="#006a61" stroke-dasharray="60 191" stroke-dashoffset="-100" stroke-width="20"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-headline-md font-bold">100%</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div class="flex items-center gap-xs">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="text-label-md">كبار السن (60+)</span>
+</div>
+<div class="flex items-center gap-xs">
+<div class="w-3 h-3 rounded-full bg-secondary"></div>
+<span class="text-label-md">البالغون (18-60)</span>
+</div>
+<div class="flex items-center gap-xs">
+<div class="w-3 h-3 rounded-full bg-surface-container-highest"></div>
+<span class="text-label-md">الأطفال (0-18)</span>
+</div>
+</div>
+</div>
+<!-- Laboratory & Imaging Requests -->
+<div class="col-span-12 glass-card rounded-2xl overflow-hidden">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+<h4 class="font-title-lg text-title-lg font-bold">أكثر التحاليل والأشعة طلباً</h4>
+<button class="text-primary font-bold text-label-md flex items-center gap-1">
+                            عرض التفاصيل الكاملة
+                            <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-right border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant text-label-md">
+<th class="p-md font-bold">الفحص / الإجراء</th>
+<th class="p-md font-bold">النوع</th>
+<th class="p-md font-bold text-center">العدد الكلي</th>
+<th class="p-md font-bold">معدل التغيير</th>
+<th class="p-md font-bold">الحالات المرتبطة</th>
+</tr>
+</thead>
+<tbody class="text-body-md">
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+<td class="p-md font-medium">عد دم كامل (CBC)</td>
+<td class="p-md"><span class="px-3 py-1 bg-primary-container/20 text-primary rounded-full text-label-md">مختبر</span></td>
+<td class="p-md text-center">412</td>
+<td class="p-md text-secondary"><span class="flex items-center gap-1">↑ 8%</span></td>
+<td class="p-md text-on-surface-variant">الفحوصات الدورية، فقر الدم</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+<td class="p-md font-medium">أشعة سينية على الصدر (X-Ray)</td>
+<td class="p-md"><span class="px-3 py-1 bg-secondary-container/20 text-secondary rounded-full text-label-md">أشعة</span></td>
+<td class="p-md text-center">215</td>
+<td class="p-md text-error"><span class="flex items-center gap-1">↓ 2%</span></td>
+<td class="p-md text-on-surface-variant">التهاب رئوي، كسور ضلع</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+<td class="p-md font-medium">تحليل السكر التراكمي (HbA1c)</td>
+<td class="p-md"><span class="px-3 py-1 bg-primary-container/20 text-primary rounded-full text-label-md">مختبر</span></td>
+<td class="p-md text-center">189</td>
+<td class="p-md text-secondary"><span class="flex items-center gap-1">↑ 15%</span></td>
+<td class="p-md text-on-surface-variant">متابعة السكري</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+<td class="p-md font-medium">تصوير رنين مغناطيسي (MRI)</td>
+<td class="p-md"><span class="px-3 py-1 bg-secondary-container/20 text-secondary rounded-full text-label-md">أشعة</span></td>
+<td class="p-md text-center">84</td>
+<td class="p-md text-secondary"><span class="flex items-center gap-1">↑ 4%</span></td>
+<td class="p-md text-on-surface-variant">إصابات عصبية، فقرات</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Research Insights Card -->
+<div class="col-span-12 md:col-span-8 glass-card p-lg rounded-2xl flex flex-col md:flex-row gap-lg items-center">
+<div class="w-full md:w-1/3 aspect-video md:aspect-square bg-surface-container rounded-xl overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist high-tech laboratory scene with a high-end microscope and digital data projections on glass walls. The lighting is bright, blue-toned, and clinical. The overall composition is artistic yet professional, suggesting advanced medical research and diagnostic precision. Soft focus background ensures clarity of the primary subject." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC65ye6JX2eS9DkTHh4apCqGbHfZ0C4FkGyTipUA0mTYrSOI5TMvEkbUxqXuzSY_RVAa3IxBOxX-1fay285roOjyzobCSumNHQxNGkjK87HH7vZgi_YSZ9XMReEyYvwFmAj5-GwqV_78Q-Rl1aEL0ZcFOZaoRDZrZozuzEBUTkkZWNp38XGHhtTFF-E8tsCsfMF1oQ9IfnXAAleLsav8CE8GMtDGkMCEpiceARMSLsjzIFO-X7FLCyp_u4Ys6-TMpAF_xA4G5yTFkEk"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-sm mb-sm">
+<span class="px-2 py-1 bg-tertiary-container/10 text-tertiary-container text-[10px] font-bold rounded uppercase">توصية بحثية</span>
+<span class="text-on-surface-variant text-label-md">تم التحديث منذ يومين</span>
+</div>
+<h4 class="font-title-lg text-title-lg font-bold mb-sm">ارتفاع ملحوظ في الحالات التنفسية الموسمية</h4>
+<p class="text-body-md text-on-surface-variant mb-md leading-relaxed">أظهرت البيانات زيادة بنسبة 22% في حالات التهاب الحلق بين الأطفال دون سن 12 خلال الأسبوعين الماضيين. نوصي بتوفير مخزون إضافي من المضادات الحيوية الخاصة بالأطفال والفحوصات السريعة في العيادة.</p>
+<button class="text-primary font-bold text-label-md flex items-center gap-2 border border-primary px-4 py-2 rounded-lg hover:bg-primary/5">
+<span class="material-symbols-outlined text-[20px]">science</span>
+                            بدأ تقرير بحثي مفصل
+                        </button>
+</div>
+</div>
+<!-- Quick Action Stats -->
+<div class="col-span-12 md:col-span-4 bg-on-surface text-white p-lg rounded-2xl flex flex-col justify-between">
+<div class="mb-lg">
+<h4 class="font-title-lg text-title-lg font-bold mb-xs">تنبؤات العيادة</h4>
+<p class="text-body-md opacity-70">بناءً على الذكاء الاصطناعي للشهر القادم</p>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="opacity-80">المرضى المتوقعون</span>
+<span class="font-bold text-xl">~1,250</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="opacity-80">ساعات الذروة</span>
+<span class="font-bold text-xl">10 - 2 م</span>
+</div>
+</div>
+<div class="mt-xl">
+<button class="w-full py-3 bg-secondary text-white rounded-xl font-bold hover:bg-secondary/90 transition-colors">
+                            عرض التحليلات التنبؤية
+                        </button>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Mobile Navigation (Visible on <md screens) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-surface border-t border-outline-variant flex items-center justify-around z-50">
+<div class="flex flex-col items-center text-on-surface-variant">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px]">الرئيسية</span>
+</div>
+<div class="flex flex-col items-center text-on-surface-variant">
+<span class="material-symbols-outlined">group</span>
+<span class="text-[10px]">المرضى</span>
+</div>
+<div class="flex flex-col items-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="text-[10px] font-bold">التقارير</span>
+</div>
+<div class="flex flex-col items-center text-on-surface-variant">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px]">الإعدادات</span>
+</div>
+</nav>
+<script>
+        // Simple animation logic for chart bars
+        document.addEventListener('DOMContentLoaded', () => {
+            const bars = document.querySelectorAll('.chart-bar');
+            bars.forEach(bar => {
+                const targetWidth = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = targetWidth;
+                }, 300);
+            });
+        });
+    </script>
+</body></html>

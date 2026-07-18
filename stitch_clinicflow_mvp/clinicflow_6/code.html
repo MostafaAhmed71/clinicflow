@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ClinicFlow - إعداد الهوية البصرية</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#dce9ff",
+                    "secondary-fixed": "#89f5e7",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "on-surface": "#0b1c30",
+                    "on-primary-fixed": "#001d31",
+                    "error-container": "#ffdad6",
+                    "on-background": "#0b1c30",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface-dim": "#cbdbf5",
+                    "on-secondary-fixed": "#00201d",
+                    "primary-fixed": "#cce5ff",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#006a61",
+                    "outline-variant": "#bfc7d2",
+                    "surface-container-highest": "#d3e4fe",
+                    "outline": "#707881",
+                    "on-surface-variant": "#3f4850",
+                    "tertiary": "#595c5e",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#c4c7c9",
+                    "tertiary-container": "#727577",
+                    "on-primary-container": "#fdfcff",
+                    "on-primary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#6bd8cb",
+                    "secondary-container": "#86f2e4",
+                    "primary": "#006194",
+                    "on-secondary-fixed-variant": "#005049",
+                    "surface-bright": "#f8f9ff",
+                    "surface": "#f8f9ff",
+                    "on-tertiary-container": "#fbfdff",
+                    "background": "#f8f9ff",
+                    "tertiary-fixed": "#e0e3e5",
+                    "surface-container-low": "#eff4ff",
+                    "primary-container": "#007bb9",
+                    "surface-tint": "#006398",
+                    "surface-container": "#e5eeff",
+                    "primary-fixed-dim": "#93ccff",
+                    "on-secondary-container": "#006f66",
+                    "inverse-surface": "#213145",
+                    "surface-variant": "#d3e4fe",
+                    "inverse-primary": "#93ccff",
+                    "on-tertiary-fixed": "#191c1e",
+                    "on-primary-fixed-variant": "#004b73",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#444749"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sidebar-width": "260px",
+                    "sm": "8px",
+                    "sidebar-collapsed": "80px",
+                    "xl": "32px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "xs": "4px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "body-md": ["IBM Plex Sans Arabic"],
+                    "title-lg": ["IBM Plex Sans Arabic"],
+                    "headline-lg-mobile": ["IBM Plex Sans Arabic"],
+                    "body-lg": ["IBM Plex Sans Arabic"],
+                    "display": ["IBM Plex Sans Arabic"],
+                    "label-md": ["IBM Plex Sans Arabic"],
+                    "headline-md": ["IBM Plex Sans Arabic"],
+                    "headline-lg": ["IBM Plex Sans Arabic"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'IBM Plex Sans Arabic', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .rtl-mirror { transform: scaleX(-1); }
+        .dashed-border {
+            background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='%23707881FF' stroke-width='2' stroke-dasharray='8%2c 12' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="bg-surface border-b border-outline-variant docked full-width top-0 z-50">
+<div class="flex justify-between items-center px-lg h-16 w-full max-w-7xl mx-auto">
+<div class="font-headline-md text-headline-md text-primary">ClinicFlow</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<div class="flex flex-1 w-full max-w-7xl mx-auto overflow-hidden">
+<!-- Main Content Area (Form) -->
+<main class="flex-1 p-lg overflow-y-auto">
+<div class="max-w-2xl mx-auto">
+<!-- Progress Indicator -->
+<div class="mb-xl">
+<div class="flex justify-between items-end mb-sm">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary">الهوية البصرية</h1>
+<p class="font-body-md text-on-surface-variant">الخطوة الثانية: تخصيص مظهر عيادتك الرقمي</p>
+</div>
+<span class="font-label-md text-primary bg-primary-fixed px-3 py-1 rounded-full">الخطوة 2 من 4</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-1/2 transition-all duration-500"></div>
+</div>
+</div>
+<!-- Setup Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-xl space-y-xl shadow-sm">
+<!-- Logo Upload Section -->
+<section class="space-y-md">
+<label class="font-title-lg text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">palette</span>
+                            شعار العيادة
+                        </label>
+<div class="dashed-border p-xl flex flex-col items-center justify-center text-center cursor-pointer hover:bg-surface-container-low transition-colors group">
+<div class="w-16 h-16 bg-primary-fixed rounded-full flex items-center justify-center mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-primary-fixed text-3xl">upload_file</span>
+</div>
+<p class="font-body-lg text-on-surface mb-xs">اسحب وأفلت الشعار هنا</p>
+<p class="font-label-md text-on-surface-variant">يدعم PNG, JPG (الحد الأقصى 2 ميجابايت)</p>
+<button class="mt-md px-lg py-2 border border-primary text-primary font-label-md rounded-lg hover:bg-primary hover:text-on-primary transition-all">تصفح الملفات</button>
+</div>
+</section>
+<!-- Primary Color Selection -->
+<section class="space-y-md">
+<label class="font-title-lg text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">colorize</span>
+                            اللون الأساسي للبراند
+                        </label>
+<p class="font-body-md text-on-surface-variant">سيتم استخدامه في العناوين، الأزرار، والروابط في تقاريرك.</p>
+<div class="flex flex-wrap gap-md">
+<!-- Color Options -->
+<button class="w-12 h-12 rounded-full bg-[#006194] ring-4 ring-primary-fixed ring-offset-2 transition-all"></button>
+<button class="w-12 h-12 rounded-full bg-[#006a61] hover:scale-110 transition-all"></button>
+<button class="w-12 h-12 rounded-full bg-[#ba1a1a] hover:scale-110 transition-all"></button>
+<button class="w-12 h-12 rounded-full bg-[#595c5e] hover:scale-110 transition-all"></button>
+<button class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container hover:scale-110 transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</section>
+</div>
+<!-- Action Buttons -->
+<div class="mt-xl flex items-center justify-between">
+<button class="flex items-center gap-sm px-lg py-3 text-on-surface-variant font-title-lg hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined rtl-mirror">arrow_forward</span>
+                        السابق
+                    </button>
+<button class="flex items-center gap-sm px-xl py-3 bg-primary text-on-primary font-title-lg rounded-lg shadow-md hover:bg-primary-container transition-all">
+                        متابعة
+                        <span class="material-symbols-outlined rtl-mirror">arrow_back</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Right Preview Sidebar (Desktop Only) -->
+<aside class="hidden lg:flex flex-col gap-md p-md w-[400px] h-screen sticky top-0 border-r border-outline-variant bg-surface-container-low">
+<div class="mb-lg">
+<h2 class="font-headline-md text-primary">معاينة الوصفة</h2>
+<p class="font-label-md text-on-surface-variant">هكذا سيظهر شعارك وألوانك للمرضى</p>
+</div>
+<!-- Prescription Preview Mockup -->
+<div class="bg-white rounded-lg shadow-xl aspect-[3/4] p-lg border border-outline-variant flex flex-col relative overflow-hidden">
+<!-- Header -->
+<div class="flex justify-between items-start border-b-2 border-primary pb-md mb-lg">
+<div class="w-20 h-20 bg-surface-container rounded-lg flex items-center justify-center border border-outline-variant">
+<!-- Placeholder for Logo -->
+<span class="material-symbols-outlined text-outline-variant text-4xl">image</span>
+</div>
+<div class="text-left">
+<h3 class="font-headline-md text-primary">د. أحمد محمد</h3>
+<p class="font-label-md text-on-surface-variant">استشاري أمراض الباطنة</p>
+<p class="font-label-md text-on-surface-variant">رقم الترخيص: 123456</p>
+</div>
+</div>
+<!-- Prescription Content Mockup -->
+<div class="space-y-md flex-1">
+<div class="flex justify-between mb-lg">
+<div class="space-y-xs">
+<div class="h-3 w-32 bg-surface-container rounded"></div>
+<div class="h-3 w-24 bg-surface-container rounded"></div>
+</div>
+<div class="h-3 w-20 bg-surface-container rounded"></div>
+</div>
+<div class="flex items-center gap-md mb-md">
+<span class="font-display text-primary">Rx</span>
+<div class="h-0.5 flex-1 bg-surface-container"></div>
+</div>
+<div class="space-y-lg">
+<div class="space-y-sm">
+<div class="h-4 w-3/4 bg-surface-container rounded"></div>
+<div class="h-3 w-1/2 bg-surface-container-low rounded"></div>
+</div>
+<div class="space-y-sm">
+<div class="h-4 w-2/3 bg-surface-container rounded"></div>
+<div class="h-3 w-1/3 bg-surface-container-low rounded"></div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="mt-auto border-t border-outline-variant pt-md flex justify-between">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary text-xs">location_on</span>
+<span class="text-[10px] text-on-surface-variant">القاهرة، مصر</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary text-xs">call</span>
+<span class="text-[10px] text-on-surface-variant">0100 000 0000</span>
+</div>
+</div>
+<!-- Watermark / Design Detail -->
+<div class="absolute -bottom-10 -right-10 opacity-[0.03]">
+<span class="material-symbols-outlined text-[200px]" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+</div>
+</div>
+<!-- Hint -->
+<div class="mt-xl p-md bg-secondary-container rounded-xl flex items-start gap-md">
+<span class="material-symbols-outlined text-on-secondary-container">info</span>
+<p class="font-label-md text-on-secondary-container">تأكد من استخدام شعار ذو خلفية شفافة للحصول على أفضل النتائج في الطباعة الورقية والتحويل لملفات PDF.</p>
+</div>
+</aside>
+<!-- Sidebar Navigation (Mandatory Anchor) -->
+<nav class="hidden lg:flex flex-col gap-md p-md w-sidebar-width h-screen sticky top-0 rtl bg-surface-container-low border-l border-outline-variant">
+<div class="mb-xl">
+<div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center mb-md shadow-md">
+<span class="material-symbols-outlined text-on-primary text-3xl">medical_services</span>
+</div>
+<h2 class="font-headline-lg text-primary">Onboarding</h2>
+<p class="font-label-md text-on-surface-variant">Setup your clinic</p>
+</div>
+<div class="space-y-sm">
+<div class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant rounded-lg transition-transform scale-95 cursor-not-allowed opacity-60">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="font-label-md">Clinic Profile</span>
+</div>
+<div class="flex items-center gap-md p-md bg-secondary-container text-on-secondary-container rounded-lg transition-transform scale-95 shadow-sm">
+<span class="material-symbols-outlined">palette</span>
+<span class="font-label-md">Branding</span>
+</div>
+<div class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant rounded-lg transition-transform scale-95">
+<span class="material-symbols-outlined">schedule</span>
+<span class="font-label-md">Working Hours</span>
+</div>
+<div class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant rounded-lg transition-transform scale-95">
+<span class="material-symbols-outlined">print</span>
+<span class="font-label-md">Printing</span>
+</div>
+</div>
+<div class="mt-auto p-md border-t border-outline-variant">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-outline-variant flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist clinic logo placeholder icon in a soft professional healthcare style, centered on a light gray medical background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm9uPWZCebcHY19jJSaVlbbeaIx9EUnUOsVCVyEzN68bFuZAPGghCcmWiw-o1EolTzfhhocN6OcleZ3sjvHgSyYawyZbGza_TLk5kVYocHe8g_g6o4g0X25mvWn1Yfa8TGOfcXh3BvaWghaLbtNkqbQ6LNdgwSGXdBHW6B3rtiwE3GoQ2O2Hck2U5lZJC8WlbeUltJsB-Typ95zyv4MMg0qCdK4Akg5njIe6tY0SBo25Jb2WWd163AkE9xncgR7QRhq-wTYYviIj1H"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface font-bold">عيادة الدكتور</p>
+<p class="text-[10px] text-on-surface-variant">قيد الإعداد</p>
+</div>
+</div>
+</div>
+</nav>
+</div>
+<!-- Mobile View Floating Button (Fallback) -->
+<div class="lg:hidden fixed bottom-0 left-0 right-0 p-lg bg-surface border-t border-outline-variant flex gap-md z-50">
+<button class="flex-1 py-3 border border-outline text-on-surface font-label-md rounded-lg">السابق</button>
+<button class="flex-[2] py-3 bg-primary text-on-primary font-label-md rounded-lg shadow-md">حفظ ومتابعة</button>
+</div>
+<script>
+        // Simple color picker interaction
+        const colorButtons = document.querySelectorAll('button.w-12.h-12');
+        colorButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                colorButtons.forEach(b => b.classList.remove('ring-4', 'ring-primary-fixed', 'ring-offset-2'));
+                if (!btn.querySelector('span')) { // don't highlight 'add' button
+                    btn.classList.add('ring-4', 'ring-primary-fixed', 'ring-offset-2');
+                    
+                    // Update preview accent color (visual effect only)
+                    const previewHeader = document.querySelector('.pres-preview-header');
+                    if(previewHeader) {
+                        previewHeader.style.borderColor = btn.style.backgroundColor;
+                    }
+                }
+            });
+        });
+    </script>
+</body></html>

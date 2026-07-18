@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="ClinicFlow">
+  <rect width="512" height="512" rx="96" fill="#006194"/>
+  <rect x="48" y="48" width="416" height="416" rx="72" fill="#007bb9"/>
+  <path fill="#ffffff" d="M256 118c-18 0-32 14-32 32v74h-74c-18 0-32 14-32 32s14 32 32 32h74v74c0 18 14 32 32 32s32-14 32-32v-74h74c18 0 32-14 32-32s-14-32-32-32h-74v-74c0-18-14-32-32-32z"/>
+  <circle cx="256" cy="400" r="18" fill="#86f2e4"/>
+</svg>

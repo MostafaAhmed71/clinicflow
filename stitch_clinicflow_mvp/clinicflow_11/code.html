@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ClinicFlow - إعداد الطباعة</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#dce9ff",
+                    "secondary-fixed": "#89f5e7",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "on-surface": "#0b1c30",
+                    "on-primary-fixed": "#001d31",
+                    "error-container": "#ffdad6",
+                    "on-background": "#0b1c30",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface-dim": "#cbdbf5",
+                    "on-secondary-fixed": "#00201d",
+                    "primary-fixed": "#cce5ff",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#006a61",
+                    "outline-variant": "#bfc7d2",
+                    "surface-container-highest": "#d3e4fe",
+                    "outline": "#707881",
+                    "on-surface-variant": "#3f4850",
+                    "tertiary": "#595c5e",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#c4c7c9",
+                    "tertiary-container": "#727577",
+                    "on-primary-container": "#fdfcff",
+                    "on-primary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#6bd8cb",
+                    "secondary-container": "#86f2e4",
+                    "primary": "#006194",
+                    "on-secondary-fixed-variant": "#005049",
+                    "surface-bright": "#f8f9ff",
+                    "surface": "#f8f9ff",
+                    "on-tertiary-container": "#fbfdff",
+                    "background": "#f8f9ff",
+                    "tertiary-fixed": "#e0e3e5",
+                    "surface-container-low": "#eff4ff",
+                    "primary-container": "#007bb9",
+                    "surface-tint": "#006398",
+                    "surface-container": "#e5eeff",
+                    "primary-fixed-dim": "#93ccff",
+                    "on-secondary-container": "#006f66",
+                    "inverse-surface": "#213145",
+                    "surface-variant": "#d3e4fe",
+                    "inverse-primary": "#93ccff",
+                    "on-tertiary-fixed": "#191c1e",
+                    "on-primary-fixed-variant": "#004b73",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#444749"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sidebar-width": "260px",
+                    "sm": "8px",
+                    "sidebar-collapsed": "80px",
+                    "xl": "32px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "xs": "4px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "body-md": ["IBM Plex Sans Arabic"],
+                    "title-lg": ["IBM Plex Sans Arabic"],
+                    "headline-lg-mobile": ["IBM Plex Sans Arabic"],
+                    "body-lg": ["IBM Plex Sans Arabic"],
+                    "display": ["IBM Plex Sans Arabic"],
+                    "label-md": ["IBM Plex Sans Arabic"],
+                    "headline-md": ["IBM Plex Sans Arabic"],
+                    "headline-lg": ["IBM Plex Sans Arabic"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #f8f9ff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .print-card-active {
+            border-color: #006194;
+            background-color: #e5eeff;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline flex justify-between items-center px-lg h-16 w-full max-w-7xl mx-auto sticky top-0 z-50">
+<div class="flex items-center gap-md">
+<span class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim">ClinicFlow</span>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-sm rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-primary">help</span>
+</button>
+<button class="p-sm rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-primary">account_circle</span>
+</button>
+</div>
+</header>
+<main class="flex-1 flex flex-row-reverse w-full max-w-7xl mx-auto overflow-hidden">
+<!-- SideNavBar (RTL Sidebar) -->
+<aside class="hidden lg:flex flex-col gap-md p-md w-sidebar-width h-full bg-surface-container-low dark:bg-surface-container border-l border-outline-variant dark:border-outline sticky top-16">
+<div class="mb-lg px-xs">
+<h2 class="font-headline-lg text-headline-lg text-primary">الإعداد</h2>
+<p class="font-label-md text-label-md text-on-surface-variant">تجهيز عيادتك</p>
+</div>
+<nav class="flex flex-col gap-sm">
+<div class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant rounded-lg transition-transform scale-95 cursor-not-allowed opacity-60">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="font-label-md text-label-md">Clinic Profile</span>
+</div>
+<div class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant rounded-lg transition-transform scale-95 cursor-not-allowed opacity-60">
+<span class="material-symbols-outlined">palette</span>
+<span class="font-label-md text-label-md">Branding</span>
+</div>
+<div class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant rounded-lg transition-transform scale-95 cursor-not-allowed opacity-60">
+<span class="material-symbols-outlined">schedule</span>
+<span class="font-label-md text-label-md">Working Hours</span>
+</div>
+<div class="flex items-center gap-md p-md bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-lg transition-transform scale-95">
+<span class="material-symbols-outlined">print</span>
+<span class="font-label-md text-label-md">Printing</span>
+</div>
+</nav>
+<div class="mt-auto p-md bg-surface-bright rounded-xl border border-outline-variant">
+<div class="flex justify-between items-center mb-xs">
+<span class="text-label-md font-label-md text-primary">التقدم</span>
+<span class="text-label-md font-label-md text-primary">100%</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2">
+<div class="bg-primary h-2 rounded-full w-full"></div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<section class="flex-1 p-lg md:p-xl overflow-y-auto">
+<div class="max-w-3xl mx-auto">
+<!-- Header & Progress -->
+<div class="mb-xl">
+<div class="flex items-center gap-sm mb-xs">
+<span class="bg-primary-container text-on-primary-container text-label-md font-label-md px-md py-1 rounded-full">الخطوة 4 من 4</span>
+<h1 class="font-headline-md text-headline-md text-on-surface">إعدادات الطباعة والافتراضيات</h1>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant">اختر تنسيق الطباعة المفضل واللغة الافتراضية للوصفات الطبية والفواتير.</p>
+</div>
+<!-- Print Format Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg mb-xl">
+<!-- A4 Option -->
+<div class="group relative flex flex-col p-lg bg-surface border border-outline-variant rounded-xl cursor-pointer transition-all hover:border-primary print-card-active" id="card-a4" onclick="selectPrint('a4')">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-primary-container rounded-lg">
+<span class="material-symbols-outlined text-primary">description</span>
+</div>
+<div class="check-icon opacity-100">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</div>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-xs">تنسيق A4 قياسي</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">مثالي للوصفات الطبية التفصيلية والتقارير الطبية الشاملة.</p>
+<div class="mt-auto aspect-[3/4] w-full rounded-lg overflow-hidden border border-outline-variant bg-white p-md shadow-sm">
+<div class="w-full h-full bg-cover bg-center rounded-sm" data-alt="A clean, minimalist medical prescription layout on a white A4 paper. The design features a professional clinic logo at the top, placeholder text for patient information, and a systematic grid for medication listing. The lighting is bright and sterile, reflecting a professional healthcare environment with a soft clinical blue accent." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBNSyfJJEcfOnZSmLcxCFnZUS0I0nhaaq2aLlW3AzHCyZ0kde7JqcvEwlSzZ8UXhOXesObh661guMyfHMr_dNUKl5N8ypo_pE4BFSNiNWh5-ljwC1FbICznxKsBbufVCCdG9MfQTqq1cpGRreH0j22W5wXL3_aGkRVi56LsPYzJsdLLoaRSXBMqKV7DqLjWmypCGiS3UwczzBVVO6eWutshv_UVgWYzm8W9QHAY1_VtAGCHuv7hTiku0J9r-HZscIGDseAEJ0WhJMqE')"></div>
+</div>
+</div>
+<!-- Thermal Option -->
+<div class="group relative flex flex-col p-lg bg-surface border border-outline-variant rounded-xl cursor-pointer transition-all hover:border-primary" id="card-thermal" onclick="selectPrint('thermal')">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-surface-container-highest rounded-lg">
+<span class="material-symbols-outlined text-on-surface-variant">receipt_long</span>
+</div>
+<div class="check-icon opacity-0 transition-opacity">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</div>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-xs">حراري (80 مم)</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">تنسيق سريع وموفر للمساحة، رائع للفواتير المباشرة والوصفات المختصرة.</p>
+<div class="mt-auto aspect-[3/4] w-full rounded-lg overflow-hidden border border-outline-variant bg-white p-md flex justify-center shadow-sm">
+<div class="w-2/3 h-full bg-cover bg-center rounded-sm" data-alt="A vertical thermal printer receipt strip, 80mm width, showing a simplified medical receipt layout. It includes a clinic header, a QR code at the bottom, and clean typography for service costs. The style is modern and functional, set against a pristine white background with soft shadows to give it a realistic paper feel." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA7P1gcnhniI2IsGJmlU7UVnuQzA7uFHnxt4tX4a5uei_80y4qi0CmXonxzVMx2iTxd6s8QlDF24iDSywcRj7vQrofu6CHwb-axerVFKGSw7xt_i2wiB4genMzYwVW8KJScK0OrXh9EcZXO-KEpM2LP746WPdHIV_F74GuKdFvj0NwrtJ7MHQYmNCKRJyj9JBpsbvi5rmf7E13EUIybICBW22YPZSqZsis3CzcsZermFINTR4JB9_TmXpSqN6HVyB2OjH6qTem2yN3P')"></div>
+</div>
+</div>
+</div>
+<!-- Settings Card -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-lg mb-xl">
+<div class="flex flex-col gap-lg">
+<!-- Language Toggle -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary">language</span>
+<div>
+<h4 class="font-body-lg text-body-lg font-bold text-on-surface">اللغة الافتراضية للمستندات</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">سيتم إنشاء جميع الوصفات بهذه اللغة تلقائياً</p>
+</div>
+</div>
+<div class="inline-flex p-1 bg-surface-container-highest rounded-lg border border-outline-variant">
+<button class="px-md py-1 text-label-md font-label-md rounded-md bg-white text-primary shadow-sm transition-all" id="lang-ar" onclick="setLang('ar')">العربية</button>
+<button class="px-md py-1 text-label-md font-label-md rounded-md text-on-surface-variant transition-all" id="lang-en" onclick="setLang('en')">English</button>
+</div>
+</div>
+<hr class="border-outline-variant"/>
+<!-- Default Copies -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary">content_copy</span>
+<div>
+<h4 class="font-body-lg text-body-lg font-bold text-on-surface">عدد النسخ الافتراضي</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">النسخ التلقائية عند النقر على "طباعة"</p>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="w-8 h-8 flex items-center justify-center rounded-full border border-outline text-on-surface hover:bg-surface-variant">-</button>
+<span class="font-body-lg text-body-lg px-md">1</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-full border border-outline text-on-surface hover:bg-surface-variant">+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row-reverse items-center justify-between gap-md mt-xl">
+<button class="w-full sm:w-auto px-xl h-14 bg-primary text-on-primary rounded-xl font-title-lg text-title-lg flex items-center justify-center gap-md hover:opacity-90 transition-all shadow-lg active:scale-95" onclick="finishSetup()">
+<span>إكمال الإعداد</span>
+<span class="material-symbols-outlined">rocket_launch</span>
+</button>
+<button class="w-full sm:w-auto px-lg h-14 text-on-surface-variant font-title-lg text-title-lg flex items-center justify-center gap-sm hover:bg-surface-container hover:text-on-surface rounded-xl transition-all">
+<span class="material-symbols-outlined">arrow_forward</span>
+<span>السابق</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Space for Mobile Context -->
+<div class="lg:hidden h-16 bg-surface border-t border-outline-variant flex items-center justify-around fixed bottom-0 w-full z-40 px-lg">
+<div class="flex flex-col items-center gap-xs text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">print</span>
+<span class="text-[10px] font-label-md">الطباعة</span>
+</div>
+<div class="flex flex-col items-center gap-xs text-on-surface-variant opacity-50">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-label-md">الإعدادات</span>
+</div>
+</div>
+<script>
+        function selectPrint(type) {
+            const a4 = document.getElementById('card-a4');
+            const thermal = document.getElementById('card-thermal');
+            
+            if (type === 'a4') {
+                a4.classList.add('print-card-active');
+                a4.querySelector('.check-icon').classList.replace('opacity-0', 'opacity-100');
+                thermal.classList.remove('print-card-active');
+                thermal.querySelector('.check-icon').classList.replace('opacity-100', 'opacity-0');
+            } else {
+                thermal.classList.add('print-card-active');
+                thermal.querySelector('.check-icon').classList.replace('opacity-0', 'opacity-100');
+                a4.classList.remove('print-card-active');
+                a4.querySelector('.check-icon').classList.replace('opacity-100', 'opacity-0');
+            }
+        }
+
+        function setLang(lang) {
+            const arBtn = document.getElementById('lang-ar');
+            const enBtn = document.getElementById('lang-en');
+            
+            if (lang === 'ar') {
+                arBtn.className = "px-md py-1 text-label-md font-label-md rounded-md bg-white text-primary shadow-sm transition-all";
+                enBtn.className = "px-md py-1 text-label-md font-label-md rounded-md text-on-surface-variant transition-all";
+            } else {
+                enBtn.className = "px-md py-1 text-label-md font-label-md rounded-md bg-white text-primary shadow-sm transition-all";
+                arBtn.className = "px-md py-1 text-label-md font-label-md rounded-md text-on-surface-variant transition-all";
+            }
+        }
+
+        function finishSetup() {
+            const btn = event.currentTarget;
+            btn.innerHTML = `
+                <span class="material-symbols-outlined animate-spin">progress_activity</span>
+                <span>جاري الحفظ...</span>
+            `;
+            setTimeout(() => {
+                btn.innerHTML = `
+                    <span class="material-symbols-outlined">check_circle</span>
+                    <span>تم بنجاح!</span>
+                `;
+                btn.classList.replace('bg-primary', 'bg-secondary');
+            }, 1500);
+        }
+    </script>
+</body></html>
